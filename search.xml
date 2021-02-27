@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Cpp-Notes</title>
+    <url>/Notes/2021/01/21/cpp-notes/</url>
+    <content><![CDATA[<ul>
+<li>在常函数中可以修改<code>mutable</code>关键字修饰的成员变量。</li>
+<li><code>dynamic_pointer_cast</code>出错会返回nullptr。</li>
+<li>c++通过条件编译来避免头文件被多次包含。在实际开发中，直接把另一个文件拷贝成当前文件，并在上面做修改。如果忘记修改预处理宏，则会导致文件无法被正确包含的编译出错。正确做法是拷贝文件后因立即修改预处理宏，或者使用#pragma once来避免这个问题。</li>
+<li>类的初始化列表不能调函数<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">V</span></span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">      V(<span class="keyword">int</span> a) : t_[<span class="number">0</span>](a) &#123; &#125;</span><br><span class="line">      <span class="built_in">array</span>&lt;<span class="keyword">int</span>, 1&gt; t_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Eigen-Notes</title>
+    <url>/Notes/2021/01/21/eigen-notes/</url>
+    <content><![CDATA[<ul>
+<li><code>Eigen::CholmodSupernodalLLT</code>只支持double，<code>static assertion failed: CHOLMOD_SUPPORTS_DOUBLE_PRECISION_ONLY</code></li>
+<li>SuiteSparse用法，<code>FIND_PACKAGE(SuiteSparse REQUIRED), $&#123;SuiteSparse_INCLUDE_DIRS&#125;, $&#123;SuiteSparse_LIBRARIES&#125;</code></li>
+<li><code>Eigen::CholmodSupernodalLLT</code> cpu上求解2千自由度大概需要0.1s, 1万自由度需要0.4s(cpu:8核， 3.9G)。</li>
+<li>eigen中vectorxd转化为sparse matrix，并且用vectorxd作为diagonal<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Matrix&lt;float, -1, 1&gt; m(3);</span><br><span class="line">m &lt;&lt; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>;</span><br><span class="line">DiagonalMatrix&lt;float, Dynamic&gt; diagm(m);</span><br><span class="line"><span class="function">SparseMatrix&lt;<span class="keyword">float</span>&gt; <span class="title">spm</span><span class="params">(diagm)</span></span>;</span><br></pre></td></tr></table></figure>
+先转换为diagonal，再转为sparse matrix</li>
+<li>eigen中<code>map&lt;matrix&gt;</code> 类可以直接向matrix类赋值。</li>
+<li>compile error when SimplicialLDLT and SimplicialLLT solve RowMajor SparseMatrix with eigen3.3.7. However, SimplicialLDLT works on ColMajor SparseMatrix well.<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Eigen/SparseCholesky&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Eigen::SparseMatrix&lt;<span class="keyword">double</span>, Eigen::RowMajor&gt; A;</span><br><span class="line">  Eigen::SimplicialLDLT&lt;Eigen::SparseMatrix&lt;<span class="keyword">double</span>, Eigen::RowMajor&gt;&gt; solver;</span><br><span class="line">  solver.compute(A);</span><br><span class="line"></span><br><span class="line">  Eigen::Matrix&lt;<span class="keyword">double</span>, <span class="number">-1</span>, <span class="number">1</span>&gt; b;</span><br><span class="line">  Eigen::Matrix&lt;<span class="keyword">double</span>, <span class="number">-1</span>, <span class="number">1</span>&gt; x;</span><br><span class="line">  x = solver.solve(b);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>数值计算库</category>
+      </categories>
+      <tags>
+        <tag>eigen</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>通过hexo搭建个人博客</title>
+    <url>/Notes/2021/01/21/hexo-blog/</url>
+    <content><![CDATA[<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>通过github提供的gh-pages可以直观地记录项目开发过程，方便项目展示以及后期维护。然而github提供的gh-pages只支持静态页面，编写麻烦，对外行非常不友好。Markdown是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。然而gh-pages对Markdown的支持非常弱，很多标记无法识别。如果能将Markdown文件转为gh-pages支持的html，这样人们可以专注于项目记录，避免繁琐的前段工作，能极大提高开发效率。Hexo完美的解决了这个问题，Hexo是一个简洁且高效的博客框架，可以快速地将markdown解析为静态网页。</p>
+<h3 id="Hexo博客系统前期准备"><a href="#Hexo博客系统前期准备" class="headerlink" title="Hexo博客系统前期准备"></a>Hexo博客系统前期准备</h3><ul>
+<li>安装git</li>
+<li>安装node.js</li>
+<li>安装npm</li>
+<li>将本地ssh-key上传到github</li>
+</ul>
+<h2 id="撰写博客"><a href="#撰写博客" class="headerlink" title="撰写博客"></a>撰写博客</h2><p>参考<a href="https://mfrank2016.github.io/breeze-blog/2020/05/02/hexo/hexo-start/">前人</a>、<a href="https://juejin.cn/post/6844903887732736007">博主</a>等博客撰写教程，这里总结以下。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir blog</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install <span class="comment"># install node modules</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>需要修改一些配置文件，_config.yml修改如下<br><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">https://n-jing.github.io</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/Notes</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:n-jing/Notes.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure><br>修改主题为<code>theme: next</code><br>修改highlight<br><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">auto_detect:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="修改hexo语言"><a href="#修改hexo语言" class="headerlink" title="修改hexo语言"></a>修改hexo语言</h3><p>修改<code>_config.yml</code>中<code>language: zh-CN</code>，其中语言为<code>themes/next/languages/</code>中的一项。</p>
+<h3 id="隐藏网页底部-powered-By-Hexo"><a href="#隐藏网页底部-powered-By-Hexo" class="headerlink" title="隐藏网页底部 powered By Hexo"></a>隐藏网页底部 powered By Hexo</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% if theme.footer.powered.enable %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;powered-by&quot;</span>&gt;</span>&#123;#</span><br><span class="line">#&#125;&#123;&#123; __(&#x27;footer.powered&#x27;, &#x27;<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;theme-link&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&#x27; + <span class="attr">nofollow</span> + &#x27; <span class="attr">href</span>=<span class="string">&quot;https://hexo.io&quot;</span>&gt;</span>Hexo<span class="tag">&lt;/<span class="name">a</span>&gt;</span>&#x27;) &#125;&#125;&#123;% if theme.footer.powered.version %&#125; v&#123;&#123; hexo_env(&#x27;version&#x27;) &#125;&#125;&#123;% endif %&#125;&#123;#</span><br><span class="line">#&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line">&#123;% if theme.footer.powered.enable and theme.footer.theme.enable %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;post-meta-divider&quot;</span>&gt;</span>|<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line">&#123;% if theme.footer.theme.enable %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;theme-info&quot;</span>&gt;</span>&#123;#</span><br><span class="line">#&#125;&#123;&#123; __(&#x27;footer.theme&#x27;) &#125;&#125; – &#123;#</span><br><span class="line">#&#125;<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;theme-link&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&#123;&#123; <span class="attr">nofollow</span> &#125;&#125; <span class="attr">href</span>=<span class="string">&quot;https://theme-next.org&quot;</span>&gt;</span>&#123;#</span><br><span class="line">#&#125;NexT.&#123;&#123; theme.scheme &#125;&#125;&#123;#</span><br><span class="line">#&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span>&#123;% if theme.footer.theme.version %&#125; v&#123;&#123; version &#125;&#125;&#123;% endif %&#125;&#123;#</span><br><span class="line">#&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<p>把这段代码首尾分别加上：<code>&lt;!--</code> 和<code>--&gt;</code>，或者直接删除。</p>
+<h3 id="添加tags和categories页面"><a href="#添加tags和categories页面" class="headerlink" title="添加tags和categories页面"></a>添加tags和categories页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+<p>修改<code>source/tags/index.md</code><br><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2021-01-21 11:00:24</span><br><span class="line">type: tags</span><br><span class="line">---</span><br></pre></td></tr></table></figure><br>修改<code>source/categories/index.md</code><br><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2021-01-21 11:00:17</span><br><span class="line">type: categories</span><br><span class="line">---</span><br></pre></td></tr></table></figure><br>同时next主题配置文件<code>themes/next/_config.yml</code><br><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="comment">#about: /about/ || fa fa-user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || fa fa-sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || fa fa-heartbeat</span></span><br></pre></td></tr></table></figure><br>修改scheme为<code>scheme: Pisces</code></p>
+<h3 id="hexo支持插入本地图片"><a href="#hexo支持插入本地图片" class="headerlink" title="hexo支持插入本地图片"></a>hexo支持插入本地图片</h3><p>修改<code>_config.yml</code>中<code>post_asset_folder: true</code><br>安装插件<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image -save</span><br></pre></td></tr></table></figure><br><code>npm install hexo-asset-image --save</code>有问题，无法使用。<br>运行<code>hexo new &#39;demo&#39;</code>会在source/_post下生成demo目录用于存放图片，插入图片<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;demo/demo.png&quot;</span> <span class="attr">width</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">title</span>=<span class="string">&quot;demo&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;demo&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="hexo-搜索"><a href="#hexo-搜索" class="headerlink" title="hexo 搜索"></a>hexo 搜索</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+<p>在<code>_config.yml</code>中添加<br><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure><br>修改<code>themes/next/_config.yml</code><br><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Local search</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="显示当前浏览进度"><a href="#显示当前浏览进度" class="headerlink" title="显示当前浏览进度"></a>显示当前浏览进度</h3><p>修改<code>themes/next/_config.yml</code>中<code>scrollpercent: true</code></p>
+<h3 id="添加阅读量统计"><a href="#添加阅读量统计" class="headerlink" title="添加阅读量统计"></a>添加阅读量统计</h3><p>参考<a href="https://bjtu-hxs.github.io/2018/06/12/leancloud-config/">Trial</a>工作，总结如下</p>
+<ul>
+<li>注册<a href="https://www.leancloud.cn/">leancloud</a>，得到app_id和app_key。</li>
+<li>修改<code>themes/next/_config.yml</code>中<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">leancloud_visitors:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">app_id:</span> <span class="string">aeTHntH7D18LNsFFo53gEo55-9Nh9j0Va</span></span><br><span class="line">    <span class="attr">app_key:</span> <span class="string">iYkyJOsDulbtLSx7cHBMzrnX</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="hexo支持数学公式"><a href="#hexo支持数学公式" class="headerlink" title="hexo支持数学公式"></a>hexo支持数学公式</h3><ul>
+<li>安装插件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-math --save</span><br></pre></td></tr></table></figure></li>
+<li>修改<code>_config.yml</code><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">math:</span></span><br><span class="line"><span class="attr">engine:</span> <span class="string">&#x27;mathjax&#x27;</span> <span class="comment"># or &#x27;katex&#x27;</span></span><br><span class="line"><span class="attr">mathjax:</span></span><br><span class="line">  <span class="comment"># src: custom_mathjax_source</span></span><br><span class="line">  <span class="attr">config:</span></span><br><span class="line">    <span class="comment"># MathJax config</span></span><br></pre></td></tr></table></figure></li>
+<li>修改<code>themes/next/_config.yml</code><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">math:</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">engine:</span> <span class="string">mathjax</span></span><br><span class="line">  <span class="attr">mathjax:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>个人博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Opengl-Notes</title>
+    <url>/Notes/2021/01/21/opengl-notes/</url>
+    <content><![CDATA[<ul>
+<li>ffmpeg并排合并两个视频，ffmpeg -i left.mp4 -i right.mp4 -filter_complex hstack output.mp4</li>
+<li><p><a href="http://chaosink.github.io/2015/07/24/2015-07-24-%E5%B0%86OpenGL%E7%94%BB%E9%9D%A2%E5%AF%BC%E5%87%BA%E4%B8%BA%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6/">opengl保存为视频</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/a435262767/article/details/104558109">glm库中矩阵变换是连续右乘</a>。同时glm中矩阵是按照列优先存储，glm::mat4 m; m[0]表示第一列，m[0][1]表示第一列第二行。矩阵表示为</p>
+<script type="math/tex; mode=display">M = 
+ \begin{bmatrix}
+     R & P \\
+     0 & 1
+ \end{bmatrix}</script><p>glm::scale函数会对R和P同时进行缩放。缩放是对模型大小和位置同时进行，所以先平移后缩放和先缩放后平移结果是不一样的，前者的位移是后者的一半。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>渲染</category>
+      </categories>
+      <tags>
+        <tag>opengl</tag>
+        <tag>glm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Cuda-Notes</title>
+    <url>/Notes/2021/01/25/Cuda-Notes/</url>
+    <content><![CDATA[<ul>
+<li><p><code>__host__​__device__​cudaError_t cudaMalloc ( void** devPtr, size_t size )</code>为什么需要<code>void**</code>作为参数，因为<code>cudaMalloc</code>需要修改<code>devPtr</code>，故须传入变量地址。又需要分配的内存地址本身就是指针，故需传入指针的指针，<a href="https://forums.developer.nvidia.com/t/void-d-why-two/12609">请参考</a>。</p>
+</li>
+<li><p><code>Devices with compute capability 2.x or higher support calls to printf from within a CUDA kernel</code>，需要<code>cudaDeviceSynchronize()</code>同步，<a href="http://15418.courses.cs.cmu.edu/spring2013/article/15">请参考</a>。</p>
+</li>
+<li>cuda二维数组使用，通过二维访问一维数组，<a href="https://blog.csdn.net/bendanban/article/details/7669624">可以手动生成</a>，<a href="https://www.cnblogs.com/cuancuancuanhao/p/7805892.html">也可以用cuda提供的api</a>。</li>
+<li>cuda <code>Grid-Stride Loop</code>方法会带来一些优势，包括伸缩性与线程复用、易于调试以及可移植性与可读性，<a href="https://wiki.imalan.cn/archives/%E4%BD%BF%E7%94%A8%20Grid-Stride%20Loop%20%E5%A4%8D%E7%94%A8%20CUDA%20%E7%BA%BF%E7%A8%8B/">请参考</a>。</li>
+<li>Compute Capability描述的是显卡对cuda支持的情况。不同NVIDIA显卡对于CUDA的支持并不相同，因而使用CUDA前，不仅要了解它的物理构架还要了解其对CUDA的支持情况，NVIDIA使用Compute Capability来描述产品对CUDA功能的支持情况，可以在支持网页上查询到产品的 Compute Capability。<a href="https://www.jianshu.com/p/a1457370e99c">请参考</a>。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Numeric-Notes</title>
+    <url>/Notes/2021/01/25/Numeric-Notes/</url>
+    <content><![CDATA[<ul>
+<li><a href="https://milkpku.github.io/blog/2017/12/15/C++%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97%E5%BA%93%E6%A2%B3%E7%90%86/">数值计算库梳理</a>。</li>
+<li>在稀疏矩阵分解中，如$LU$、$LL^T$、$LDL^T$以及$QR$分解，如果对矩阵进行行列变换，可以显著减少分解后矩阵的fill-in，即矩阵ordering的方式会重影响fill-in，对矩阵列重新排序通常可以使其 LU 或 QR 因子更加稀疏。ordering方法包括AMD(approximate minimum degree)、MMD(multiple minimum degree)，<a href="https://ww2.mathworks.cn/help/matlab/math/sparse-matrix-operations.html#responsive_offcanvas">请参考matlab</a>，<a href="https://eigen.tuxfamily.org/dox/group__OrderingMethods__Module.html">eigen</a>，<a href="https://zhuanlan.zhihu.com/p/94617545">知乎</a>。</li>
+<li>稀疏矩阵Cholesky分解包括supernodal和multifrontal方法，<a href="https://zhuanlan.zhihu.com/p/267371673">请参考</a>，<a href="https://zhuanlan.zhihu.com/p/266287595">请参考</a>。</li>
+<li>稀疏矩阵常见存储格式包括COO(coordinate format)，CSR(compressed sparse row format)，CSC(compressed sparse column format)等，<a href="https://zhuanlan.zhihu.com/p/37525925">请参考</a></li>
+</ul>
+<p>数值方法</p>
+<ul>
+<li>cg method <a href="https://zhuanlan.zhihu.com/p/98642663">cg</a></li>
+<li>newton method <a href="https://pjskd1.github.io/2019/03/07/%E7%89%9B%E9%A1%BF%E6%B3%95%E4%B8%8E%E6%8B%9F%E7%89%9B%E9%A1%BF%E6%B3%95/">newton</a> and <a href="https://zhuanlan.zhihu.com/p/29672873">newton</a></li>
+<li>implicit and explicit euler <a href="https://jinyu.li/2017/05/03/pde-basics-1/">explicit euler</a>, <a href="https://jinyu.li/2017/05/09/pde-basics-2/">semi-implicit euler</a>. <a href="https://jinyu.li/2017/05/11/pde-basics-3/">implicit euler</a>. <a href="https://adamwermus.wordpress.com/2016/12/05/comparing-conservation-of-energy-to-the-simple-pendulum-model/">energy conservation</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>数值计算</category>
+      </categories>
+      <tags>
+        <tag>numeric</tag>
+      </tags>
+  </entry>
+</search>
