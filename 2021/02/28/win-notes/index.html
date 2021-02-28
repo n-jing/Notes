@@ -20,15 +20,22 @@
     var CONFIG = {"hostname":"n-jing.github.io","root":"/Notes/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="开发笔记">
-<meta property="og:url" content="https://n-jing.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/index.html">
+  <meta name="description" content="给鼠标右键添加访问键，如下图所示，既鼠标右击后按C即可调用。在注册表中找到字符串，在其值后面添加(&amp;C)即可，如下图所示。请参考 win截图快捷键 win+Shift+s win命令 set 只在本脚本生效 setx 永久生效 &#x2F;m 系统变量，无&#x2F;m为用户变量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="win-notes">
+<meta property="og:url" content="https://n-jing.github.io/2021/02/28/win-notes/index.html">
 <meta property="og:site_name" content="开发笔记">
+<meta property="og:description" content="给鼠标右键添加访问键，如下图所示，既鼠标右击后按C即可调用。在注册表中找到字符串，在其值后面添加(&amp;C)即可，如下图所示。请参考 win截图快捷键 win+Shift+s win命令 set 只在本脚本生效 setx 永久生效 &#x2F;m 系统变量，无&#x2F;m为用户变量">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://n-jing.github.io/Notes/2021/02/28/win-notes/access_key.png">
+<meta property="og:image" content="https://n-jing.github.io/Notes/2021/02/28/win-notes/reg_value.png">
+<meta property="article:published_time" content="2021-02-28T02:46:17.000Z">
+<meta property="article:modified_time" content="2021-02-28T13:59:54.624Z">
 <meta property="article:author" content="蒋静">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://n-jing.github.io/Notes/2021/02/28/win-notes/access_key.png">
 
-<link rel="canonical" href="https://n-jing.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+<link rel="canonical" href="https://n-jing.github.io/2021/02/28/win-notes/">
 
 
 <script id="page-configurations">
@@ -36,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: 开发工具 | 开发笔记</title>
+  <title>win-notes | 开发笔记</title>
   
 
 
@@ -179,51 +186,93 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">开发工具
-          <small>分类</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://n-jing.github.io/2021/02/28/win-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Notes/images/avatar.gif">
+      <meta itemprop="name" content="蒋静">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="开发笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          win-notes
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-28 10:46:17 / 修改时间：21:59:54" itemprop="dateCreated datePublished" datetime="2021-02-28T10:46:17+08:00">2021-02-28</time>
+            </span>
+
+          
+            <span id="/Notes/2021/02/28/win-notes/" class="post-meta-item leancloud_visitors" data-flag-title="win-notes" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <ul>
+<li>给鼠标右键添加访问键，如下图所示，既鼠标右击后按C即可调用。<br><img src="/Notes/2021/02/28/win-notes/access_key.png" width="50%" height="50%" title="鼠标右键添加访问键" alt="鼠标右键添加访问键"><br>在注册表中找到字符串，在其值后面添加(&amp;C)即可，如下图所示。<br><img src="/Notes/2021/02/28/win-notes/reg_value.png" width="50%" height="50%" title="修改注册表值" alt="修改注册表值"><br><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/331226">请参考</a></li>
+<li>win截图快捷键 win+Shift+s</li>
+<li>win命令<ul>
+<li>set 只在本脚本生效</li>
+<li>setx 永久生效</li>
+<li>/m 系统变量，无/m为用户变量</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-01-21T11:04:51+08:00"
-              content="2021-01-21">
-          01-21
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <div class="post-title">
-          <a class="post-title-link" href="/Notes/2021/01/21/hexo-blog/" itemprop="url">
-            <span itemprop="name">通过hexo搭建个人博客</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Notes/2021/01/25/Numeric-Notes/" rel="prev" title="Numeric-Notes">
+      <i class="fa fa-chevron-left"></i> Numeric-Notes
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 

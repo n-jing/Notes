@@ -47,6 +47,7 @@
 <li>安装npm</li>
 <li>将本地ssh-key上传到github</li>
 </ul>
+<h2 id="配置git账号"><a href="#配置git账号" class="headerlink" title="配置git账号"></a>配置git账号</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;你的GitHub用户名&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;你的GitHub注册邮箱&quot;</span></span><br></pre></td></tr></table></figure>
 <h2 id="撰写博客"><a href="#撰写博客" class="headerlink" title="撰写博客"></a>撰写博客</h2><p>参考<a href="https://mfrank2016.github.io/breeze-blog/2020/05/02/hexo/hexo-start/">前人</a>、<a href="https://juejin.cn/post/6844903887732736007">博主</a>等博客撰写教程，这里总结以下。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir blog</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install <span class="comment"># install node modules</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <p>需要修改一些配置文件，_config.yml修改如下<br><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">https://n-jing.github.io</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/Notes</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:n-jing/Notes.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure><br>修改主题为<code>theme: next</code><br>修改highlight<br><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">auto_detect:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
@@ -145,5 +146,20 @@
       <tags>
         <tag>numeric</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>win-notes</title>
+    <url>/Notes/2021/02/28/win-notes/</url>
+    <content><![CDATA[<ul>
+<li>给鼠标右键添加访问键，如下图所示，既鼠标右击后按C即可调用。<br><img src="/Notes/2021/02/28/win-notes/access_key.png" width="50%" height="50%" title="鼠标右键添加访问键" alt="鼠标右键添加访问键"><br>在注册表中找到字符串，在其值后面添加(&amp;C)即可，如下图所示。<br><img src="/Notes/2021/02/28/win-notes/reg_value.png" width="50%" height="50%" title="修改注册表值" alt="修改注册表值"><br><a href="https://developer.aliyun.com/article/331226">请参考</a></li>
+<li>win截图快捷键 win+Shift+s</li>
+<li>win命令<ul>
+<li>set 只在本脚本生效</li>
+<li>setx 永久生效</li>
+<li>/m 系统变量，无/m为用户变量</li>
+</ul>
+</li>
+</ul>
+]]></content>
   </entry>
 </search>
