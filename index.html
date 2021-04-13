@@ -185,6 +185,300 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://n-jing.github.io/2021/03/17/reinstall-win/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Notes/images/avatar.gif">
+      <meta itemprop="name" content="蒋静">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="开发笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Notes/2021/03/17/reinstall-win/" class="post-title-link" itemprop="url">reinstall win</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-17 15:45:57 / 修改时间：16:04:31" itemprop="dateCreated datePublished" datetime="2021-03-17T15:45:57+08:00">2021-03-17</time>
+            </span>
+
+          
+            <span id="/Notes/2021/03/17/reinstall-win/" class="post-meta-item leancloud_visitors" data-flag-title="reinstall win" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>C盘下新建LocalProgram目录，作为软件安装目录。</li>
+<li>C盘Downloads下新建software、application、library目录，作为文件下载路径。</li>
+<li>添加病毒扫描排除项</li>
+<li>下载软件QQ输入法，dexpot，emacs，everything，QTTabBar，autohotkey，TrafficMonitor，TranslucentTB，clink，IrfanView，SumatraPDF，tex live    latex，hexo，linux reader，pstools</li>
+<li>新建用户lab_user</li>
+<li>开启ping功能</li>
+</ul>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">runas /user:abc <span class="built_in">cmd</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d c:</span><br><span class="line"><span class="built_in">md</span> LocalProgram</span><br><span class="line"><span class="built_in">cd</span> /d <span class="variable">%userprofile%</span></span><br><span class="line"><span class="built_in">md</span> user\shell</span><br><span class="line"><span class="built_in">md</span> user\config</span><br><span class="line"><span class="built_in">md</span> user\local</span><br><span class="line"><span class="built_in">md</span> user\shortcut</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d <span class="variable">%userprofile%</span>\Downloads</span><br><span class="line"><span class="built_in">md</span> software application library</span><br><span class="line">powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath $ENV:USERPROFILE\Downloads</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://n-jing.github.io/2021/03/11/vs-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Notes/images/avatar.gif">
+      <meta itemprop="name" content="蒋静">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="开发笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Notes/2021/03/11/vs-notes/" class="post-title-link" itemprop="url">vs-notes</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-11 16:59:10" itemprop="dateCreated datePublished" datetime="2021-03-11T16:59:10+08:00">2021-03-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-24 10:01:40" itemprop="dateModified" datetime="2021-03-24T10:01:40+08:00">2021-03-24</time>
+              </span>
+
+          
+            <span id="/Notes/2021/03/11/vs-notes/" class="post-meta-item leancloud_visitors" data-flag-title="vs-notes" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>默认库“MSVCRT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library $\Longrightarrow$ 【项目】-&gt;【属性】-&gt;【配置属性】-&gt;【连接器】-&gt;【命令行】，输入：<code>/NODEFAULTLIB:msvcrt.lib</code></li>
+<li>vs gui中配置路径，<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26399665/article/details/79889601">请参考</a>；也可以通过预处理语句<code>#pragma comment(lib,&quot;demo.lib&quot;)</code>，表示链接demo.lib库。</li>
+<li>glew32.lib for dynamic and glew32s.lib for static</li>
+<li>cmake路径只支持<code>/</code>，不支持<code>\</code>，可以通过<code>string(REPLACE &quot;/&quot; &quot;\\&quot; GROUP_PATH &quot;$&#123;SRC_PATH_REL&#125;&quot;)</code>替换。</li>
+<li>如果cuda没有安装在默认位置，通过<code>CMAKE_CUDA_COMPILER</code>指定nvcc路径，<code>set(CMAKE_CUDA_COMPILER &quot;C:/UserProgramFiles/Cuda/bin/nvcc.exe&quot;)</code></li>
+<li>cmake设置平台<code>cmake -G &quot;Visual Studio 15 2017&quot; -A x64</code>或者<code>cmake -G &quot;Unix Makefiles&quot; -A Win32</code>，然后可以设置Release模型，<code>cmake --build . --config Release</code></li>
+<li>linux可以通过<code>LD_LIBRARY_PATH</code>宏设置库搜索路径，而win没有相应的宏，为了让应用程序链接指定的库，有两种解决方法，<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/9008618/is-there-any-way-to-simulate-ld-library-path-in-windows">请参考</a><ul>
+<li>[&check;] 将库拷贝到应用程序目录</li>
+<li>[&cross;] 将库路径加入PATH，并放在系统搜索路径前。(这个方法不一定可行，因为系统搜索路径在前)</li>
+</ul>
+</li>
+<li><p>命令行编译<code>.sln</code>解决方法，</p>
+<ul>
+<li><code>devenv demo.sln /Build</code></li>
+<li><code>msbuild demo.sln /t:&lt;proj1&gt;[,&lt;proj2&gt; ...] /p:configuration=&quot;release&quot;</code></li>
+</ul>
+<ul>
+<li>emacs去除空行，<code>M-x</code> <code>^[[:space:]]*</code> 然后按<code>ctrl+q ctrl+j</code>，<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/26478719">请参考</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://n-jing.github.io/2021/03/09/bat-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Notes/images/avatar.gif">
+      <meta itemprop="name" content="蒋静">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="开发笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Notes/2021/03/09/bat-notes/" class="post-title-link" itemprop="url">bat-notes</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-09 20:36:03" itemprop="dateCreated datePublished" datetime="2021-03-09T20:36:03+08:00">2021-03-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-16 16:39:45" itemprop="dateModified" datetime="2021-03-16T16:39:45+08:00">2021-03-16</time>
+              </span>
+
+          
+            <span id="/Notes/2021/03/09/bat-notes/" class="post-meta-item leancloud_visitors" data-flag-title="bat-notes" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="脚本参数"><a href="#脚本参数" class="headerlink" title="脚本参数"></a>脚本参数</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">%~dpnx0</td>
+<td style="text-align:center">带有路劲的脚本全名</td>
+</tr>
+<tr>
+<td style="text-align:center">%~dpnx1</td>
+<td style="text-align:center">第一个参数的路径</td>
+</tr>
+<tr>
+<td style="text-align:center">%0</td>
+<td style="text-align:center">脚本名</td>
+</tr>
+<tr>
+<td style="text-align:center">%1</td>
+<td style="text-align:center">第一个参数名</td>
+</tr>
+<tr>
+<td style="text-align:center">%*</td>
+<td style="text-align:center">所有参数</td>
+</tr>
+<tr>
+<td style="text-align:center">%~dp1</td>
+<td style="text-align:center">第一个参数盘符和路径</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">用法</th>
+<th style="text-align:center">命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">rd /s /q d</td>
+<td style="text-align:center">删除目录d</td>
+</tr>
+<tr>
+<td style="text-align:center">tasklist /fi “status eq running” /v</td>
+<td style="text-align:center">显示正在运行的进程</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>win bat常见命令，<a target="_blank" rel="noopener" href="https://wsgzao.github.io/post/windows-batch/">请参考</a><br>markdown check and cross <code>&amp;check; and &amp;cross;</code> &check; and &cross;</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://n-jing.github.io/2021/02/28/win-notes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -216,7 +510,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-05 11:14:31" itemprop="dateModified" datetime="2021-03-05T11:14:31+08:00">2021-03-05</time>
+                <time title="修改时间：2021-03-18 15:50:27" itemprop="dateModified" datetime="2021-03-18T15:50:27+08:00">2021-03-18</time>
               </span>
 
           
@@ -259,7 +553,15 @@
 <p>Explorer.exe 是用户与电脑里文件系统、文件互动的软件，类似 Mac OS 里的 Finder，DOS 时代的 <a target="_blank" rel="noopener" href="http://command.com，各种UNIX">http://command.com，各种UNIX</a> liker 下的各种 Shell。</p>
 <p>添加病毒扫描排除项， win+r, <code>powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath $ENV:USERPROFILE\Downloads</code>, ctrl+shift+{Enter}</p>
 <p>win 默认以普通用户权限执行任务，即使是用管理员账户登录；当需要提升权限时，系统会给出提示。<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/66229405/answer/240508617">请参考</a></p>
-<h3 id="win-终端代理设置"><a href="#win-终端代理设置" class="headerlink" title="win 终端代理设置"></a>win 终端代理设置</h3><p><a target="_blank" rel="noopener" href="https://ssrvps.org/archives/7544">请参考</a><br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> http_proxy=&quot;socks5://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1081</span>&quot;</span><br><span class="line"><span class="built_in">set</span> https_proxy=&quot;socks5://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1081</span>&quot;</span><br><span class="line"></span><br><span class="line">git config --global http.proxy &#x27;socks5://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1081</span>&#x27; </span><br><span class="line">git config --global https.proxy &#x27;socks5://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1081</span>&#x27;</span><br></pre></td></tr></table></figure><br>取消代理<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> http_proxy=</span><br><span class="line"><span class="built_in">set</span> https_proxy=</span><br></pre></td></tr></table></figure></p>
+<h3 id="win-终端代理设置"><a href="#win-终端代理设置" class="headerlink" title="win 终端代理设置"></a>win 终端代理设置</h3><p><a target="_blank" rel="noopener" href="https://ssrvps.org/archives/7544">请参考</a><br>trojian只提供了一个端口，如果command prompt需要代理，则还需要vpn软件，这里使用v2ray+v2rayN，<a target="_blank" rel="noopener" href="https://blog.skihome.xyz/posts/trojan/">请参考</a></p>
+<ol>
+<li>下载v2ray和v2rayN，解压到同一个目录。</li>
+<li>添加socks服务，socks默认端口10808，http默认端口10809。</li>
+<li>配置代理规则，将需要代理的网址添加到“设置”-“路由设置”-“代理的domain”，<a target="_blank" rel="noopener" href="https://github.com/2dust/v2rayN/issues/1366">请参考</a></li>
+</ol>
+<p>如果IE需要代理，则在“Internet属性”-“连接”-“局域网设置”-“代理服务器”中设置。</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> http_proxy=http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">10809</span></span><br><span class="line"><span class="built_in">set</span> https_proxy=http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">10809</span></span><br></pre></td></tr></table></figure>
+<p>取消代理<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> http_proxy=</span><br><span class="line"><span class="built_in">set</span> https_proxy=</span><br></pre></td></tr></table></figure></p>
 <h2 id="win-自定义快捷键"><a href="#win-自定义快捷键" class="headerlink" title="win 自定义快捷键"></a>win 自定义快捷键</h2><h3 id="全局快捷键"><a href="#全局快捷键" class="headerlink" title="全局快捷键"></a>全局快捷键</h3><div class="table-container">
 <table>
 <thead>
@@ -356,10 +658,10 @@
 </tr>
 <tr>
 <td style="text-align:center">everything</td>
-<td style="text-align:center">文件查 找</td>
+<td style="text-align:center">文件查 找</td>
 </tr>
 <tr>
-<td style="text-align:center">files</td>
+<td style="text-align:center">QTTabBar</td>
 <td style="text-align:center">文件管理器</td>
 </tr>
 <tr>
@@ -398,6 +700,14 @@
 <td style="text-align:center">hexo</td>
 <td style="text-align:center">博客框架</td>
 </tr>
+<tr>
+<td style="text-align:center">linux reader</td>
+<td style="text-align:center">双系统读取linu分区</td>
+</tr>
+<tr>
+<td style="text-align:center">pstools</td>
+<td style="text-align:center">进程管理工具</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -411,6 +721,9 @@
 <li>cacls可以改变文件权限。</li>
 <li>win <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv7076415/">权限管理</a>与<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42747982/article/details/83239361">组管理</a>。</li>
 </ul>
+<h2 id="win-构建工程"><a href="#win-构建工程" class="headerlink" title="win 构建工程"></a>win 构建工程</h2><p>cmake通常有两种构建工程的方法，<br>. 生成makefile, 通过make(nmake)构建。可以通过<code>cmake .. -G &quot;Unix Makefiles&quot;</code>指定生成Makefile，或者在CMakeLists.txt的同一级创建一个PreLoad.cmake<code>set(CMAKE_GENERATOR &quot;Unix Makefiles&quot; CACHE INTERNAL &quot;&quot; FORCE)</code>。<a target="_blank" rel="noopener" href="https://blog.csdn.net/ducal90/article/details/96432700">请参考</a><br>. 生成vs的sln和vcxproj, 然后通过msbuild构建<code>msbuild HelloWorld.sln</code></p>
+<p>cmake编译项目<code>cmake --build . -- /p:Configuration=Release</code></p>
+<h2 id="docker使用"><a href="#docker使用" class="headerlink" title="docker使用"></a>docker使用</h2><p>安装，<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/74291add4ee5">请参考</a><br>常见命令<br>|查看所有容器|docker ps -a|<br>|查看活动容器|docker ps|<br>|下载镜像|docker pull remote-images|<br>|运行镜像后自动删除容器|docker run —rm  local-images|<br>|运行镜像后自动删除容器，并指定启动任务|docker run —rm  -it local-images bash|<br>|查看镜像|docker images|<br>|根据docker-compose.yml文件创建容器|docker-compose up|</p>
 
       
     </div>
@@ -1016,7 +1329,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Notes/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
