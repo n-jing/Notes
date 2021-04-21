@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"n-jing.github.io","root":"/Notes/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="脚本参数    参数 含义     %~dpnx0 带有路劲的脚本全名   %~dpnx1 第一个参数的路径   %0 脚本名   %1 第一个参数名   %* 所有参数   %~dp1 第一个参数盘符和路径     常见命令    用法 命令     rd &#x2F;s &#x2F;q d 删除目录d   tasklist &#x2F;fi “status eq running” &#x2F;v 显示正在运行的进程     win">
+  <meta name="description" content="脚本参数    参数 含义     %~dpnx0 带有路径的脚本全名   %~dpnx1 第一个参数的路径   %~dp0 脚本路径   %0 脚本名   %1 第一个参数名   %* 所有参数   %~dp1 第一个参数盘符和路径     常见命令    用法 命令     rd &#x2F;s &#x2F;q d 删除目录d   tasklist &#x2F;fi “status eq running” &#x2F;v 显示正在运">
 <meta property="og:type" content="article">
 <meta property="og:title" content="bat-notes">
 <meta property="og:url" content="https://n-jing.github.io/2021/03/09/bat-notes/index.html">
 <meta property="og:site_name" content="开发笔记">
-<meta property="og:description" content="脚本参数    参数 含义     %~dpnx0 带有路劲的脚本全名   %~dpnx1 第一个参数的路径   %0 脚本名   %1 第一个参数名   %* 所有参数   %~dp1 第一个参数盘符和路径     常见命令    用法 命令     rd &#x2F;s &#x2F;q d 删除目录d   tasklist &#x2F;fi “status eq running” &#x2F;v 显示正在运行的进程     win">
+<meta property="og:description" content="脚本参数    参数 含义     %~dpnx0 带有路径的脚本全名   %~dpnx1 第一个参数的路径   %~dp0 脚本路径   %0 脚本名   %1 第一个参数名   %* 所有参数   %~dp1 第一个参数盘符和路径     常见命令    用法 命令     rd &#x2F;s &#x2F;q d 删除目录d   tasklist &#x2F;fi “status eq running” &#x2F;v 显示正在运">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-09T12:36:03.000Z">
-<meta property="article:modified_time" content="2021-03-16T08:39:45.234Z">
+<meta property="article:modified_time" content="2021-04-20T10:51:34.861Z">
 <meta property="article:author" content="蒋静">
 <meta name="twitter:card" content="summary">
 
@@ -220,7 +220,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 16:39:45" itemprop="dateModified" datetime="2021-03-16T16:39:45+08:00">2021-03-16</time>
+                <time title="修改时间：2021-04-20 18:51:34" itemprop="dateModified" datetime="2021-04-20T18:51:34+08:00">2021-04-20</time>
               </span>
 
           
@@ -252,11 +252,15 @@
 <tbody>
 <tr>
 <td style="text-align:center">%~dpnx0</td>
-<td style="text-align:center">带有路劲的脚本全名</td>
+<td style="text-align:center">带有路径的脚本全名</td>
 </tr>
 <tr>
 <td style="text-align:center">%~dpnx1</td>
 <td style="text-align:center">第一个参数的路径</td>
+</tr>
+<tr>
+<td style="text-align:center">%~dp0</td>
+<td style="text-align:center"><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/3827582">脚本路径</a></td>
 </tr>
 <tr>
 <td style="text-align:center">%0</td>
@@ -298,6 +302,7 @@
 </table>
 </div>
 <p>win bat常见命令，<a target="_blank" rel="noopener" href="https://wsgzao.github.io/post/windows-batch/">请参考</a><br>markdown check and cross <code>&amp;check; and &amp;cross;</code> &check; and &cross;</p>
+<h2 id="git-用法"><a href="#git-用法" class="headerlink" title="git 用法"></a>git 用法</h2><p>. 合并分支指定文件，<code>git checkout dev new_file.txt</code>, <code>git commit -m &quot;add file frome dev branch&quot;</code>，<a target="_blank" rel="noopener" href="https://2fz1.me/2018/02/09/gitmerge/">请参考</a>。</p>
 
     </div>
 
@@ -378,7 +383,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E5%8F%82%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">脚本参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">常见命令</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E5%8F%82%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">脚本参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">常见命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-%E7%94%A8%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">git 用法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
