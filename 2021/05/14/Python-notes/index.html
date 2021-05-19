@@ -20,15 +20,19 @@
     var CONFIG = {"hostname":"n-jing.github.io","root":"/Notes/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="开发笔记">
-<meta property="og:url" content="https://n-jing.github.io/tags/eigen/index.html">
+  <meta name="description" content="Python基本数据类型  Numbers（数字） int（有符号整型） long（长整型[也可以代表八进制和十六进制]） float（浮点型） complex（复数）   String（字符串） List（列表） Tuple（元组） Dictionary（字典）   numpy中array元素维度必须一致，而list没有这要求，tuple元素可读不可写。list和tuple元素可以是任意类型。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python-notes">
+<meta property="og:url" content="https://n-jing.github.io/2021/05/14/Python-notes/index.html">
 <meta property="og:site_name" content="开发笔记">
+<meta property="og:description" content="Python基本数据类型  Numbers（数字） int（有符号整型） long（长整型[也可以代表八进制和十六进制]） float（浮点型） complex（复数）   String（字符串） List（列表） Tuple（元组） Dictionary（字典）   numpy中array元素维度必须一致，而list没有这要求，tuple元素可读不可写。list和tuple元素可以是任意类型。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-14T03:48:18.000Z">
+<meta property="article:modified_time" content="2021-05-14T06:44:25.890Z">
 <meta property="article:author" content="蒋静">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://n-jing.github.io/tags/eigen/">
+<link rel="canonical" href="https://n-jing.github.io/2021/05/14/Python-notes/">
 
 
 <script id="page-configurations">
@@ -36,12 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: eigen | 开发笔记</title>
+  <title>Python-notes | 开发笔记</title>
   
 
 
@@ -179,51 +183,136 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">eigen
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://n-jing.github.io/2021/05/14/Python-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Notes/images/avatar.gif">
+      <meta itemprop="name" content="蒋静">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="开发笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python-notes
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-14 11:48:18 / 修改时间：14:44:25" itemprop="dateCreated datePublished" datetime="2021-05-14T11:48:18+08:00">2021-05-14</time>
+            </span>
+
+          
+            <span id="/Notes/2021/05/14/Python-notes/" class="post-meta-item leancloud_visitors" data-flag-title="Python-notes" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <ul>
+<li><p>Python基本数据类型</p>
+<ul>
+<li>Numbers（数字）<ul>
+<li>int（有符号整型）</li>
+<li>long（长整型[也可以代表八进制和十六进制]）</li>
+<li>float（浮点型）</li>
+<li>complex（复数）</li>
+</ul>
+</li>
+<li>String（字符串）</li>
+<li>List（列表）</li>
+<li>Tuple（元组）</li>
+<li>Dictionary（字典）</li>
+</ul>
+</li>
+<li><p>numpy中array元素维度必须一致，而list没有这要求，tuple元素可读不可写。list和tuple元素可以是任意类型。</p>
+</li>
+</ul>
+<h2 id="Python调用C-模块"><a href="#Python调用C-模块" class="headerlink" title="Python调用C++模块"></a>Python调用C++模块</h2><ul>
+<li><p>将c++编译为python模块供python调用。主要流程为，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25077636">请参考</a></p>
+<ul>
+<li>将c++编译为lib</li>
+<li>编写swig的*.i文件</li>
+<li>配置setup.py，包括<code>include_dirs</code>、<code>library_dirs</code>、<code>libraries</code>、<code>extra_compile_args</code>等。</li>
+<li>编译</li>
+</ul>
+</li>
+<li><p>如模块为纯c++编写，不涉及与python的数据交互（如模块调用没有参数，或者参数只是字符串，浮点数等），则相对容易一些，只用编写好*.i文件即可。<code>demo.c_method(3, &quot;file_path&quot;, 0.1)</code></p>
+</li>
+<li><p>如模块有与python的数据额交互，则需要包含相应的头文件，注册函数以及初始化模块。<code>demo.c_method([1, 2, 0.5])</code>，<a target="_blank" rel="noopener" href="https://www.zouyesheng.com/python-module-c.html">请参考</a></p>
+<ul>
+<li><code>#include&lt;Python.h&gt;</code></li>
+<li>编写调用接口。<ul>
+<li>处理从 Python 传入的参数。</li>
+<li>实现功能逻辑。</li>
+<li>处理 C 中的返回值，包装成 Python 对象。</li>
+</ul>
+</li>
+<li>在一个 <code>PyMethodDef</code> 结构体中注册需要的函数。</li>
+<li>在一个初始化方法中注册模块名。</li>
+<li>最后，通过swig将文件编译为*.pyd。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Python.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> PyObject* <span class="title">W_add</span><span class="params">(PyObject* self, PyObject* args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> x;</span><br><span class="line">  <span class="keyword">int</span> y;</span><br><span class="line">  <span class="keyword">if</span>(!PyArg_ParseTuple(args, <span class="string">&quot;i|i&quot;</span>, &amp;x, &amp;y))</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">else</span> </span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> Py_BuildValue(<span class="string">&quot;i&quot;</span>, add(x, y));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> PyMethodDef ExtendMethods[] = &#123;</span><br><span class="line">  &#123;<span class="string">&quot;add&quot;</span>, W_add, METH_VARARGS, <span class="string">&quot;a function from C&quot;</span>&#125;,</span><br><span class="line">  &#123;<span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">PyMODINIT_FUNC <span class="title">initdemo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Py_InitModule(<span class="string">&quot;demo&quot;</span>, ExtendMethods);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/368361070">PyMethodDef中注册函数</a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> PyObject* (*Myds)(PyObject*,PyObject**,<span class="keyword">int64_t</span>,PyObject*);</span><br><span class="line"><span class="function"><span class="keyword">static</span> PyObject* <span class="title">say_hello</span><span class="params">(PyObject* self, PyObject* args)</span> </span>&#123; Py_RETURN_NONE; &#125;</span><br><span class="line"><span class="keyword">static</span> PyMethodDef methods[] = &#123;</span><br><span class="line">	&#123;<span class="string">&quot;hello&quot;</span>, (PyCFunction)say_hello, METH_VARARGS, <span class="literal">NULL</span>&#125;,</span><br><span class="line">	<span class="comment">// lambda 函数</span></span><br><span class="line">	&#123; <span class="string">&quot;lambda_hello&quot;</span>,</span><br><span class="line">	(PyCFunction)(Myds)[](PyObject* self, PyObject** args, <span class="keyword">int64_t</span> n, PyObject* kw) -&gt; PyObject* &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;&#125;,</span><br><span class="line">		METH_FASTCALL | METH_KEYWORDS,&#125;,</span><br><span class="line">	&#123;<span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>&#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></p>
+<p>将c++编译为python模块时找不到编译器，报错<code>Unable to find vcvarsall.bat</code>。参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33757398/article/details/89918102">博文</a>解决。找到python的<code>distutils/msvc9compiler.py</code>文件，做两处修改，</p>
+<ul>
+<li>get_build_version（第172行），添加<code>return 9.0</code></li>
+<li>find_vcvarsall（第222行），添加return r’你的Microsoft Visual C++ Compiler for Python路径’（<code>return r&#39;D:\software\visualStudio\VC\Auxiliary\Build\vcvarsall.bat&#39;</code>）</li>
+</ul>
+<p>此外也可以修改<code>VS90COMNTOOLS</code>环境变量解决，<a target="_blank" rel="noopener" href="https://blog.csdn.net/secretx/article/details/17472107">请参考</a>。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-01-21T15:37:35+08:00"
-              content="2021-01-21">
-          01-21
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <div class="post-title">
-          <a class="post-title-link" href="/Notes/2021/01/21/eigen-notes/" itemprop="url">
-            <span itemprop="name">Eigen-Notes</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Notes/2021/04/25/animation-notes/" rel="prev" title="animation-notes">
+      <i class="fa fa-chevron-left"></i> animation-notes
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -276,6 +365,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E8%B0%83%E7%94%A8C-%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text">Python调用C++模块</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

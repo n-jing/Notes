@@ -20,15 +20,19 @@
     var CONFIG = {"hostname":"n-jing.github.io","root":"/Notes/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="开发笔记">
-<meta property="og:url" content="https://n-jing.github.io/tags/eigen/index.html">
+  <meta name="description" content="Maya通过传递启动参数修改界面风格，请参考。 编写Maya插件的三种方式，纯c++、纯python、python调用c++。 Maya两种常见的插件安装方式，请参考 工具架图标 Mod文件模块化安装（推荐）   模块文件方便对插件进行管理。 maya python 2.0 and 1.0, PyMel比较慢 mayapy.exe 可以执行批处理 Maya attributes are shar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="animation-notes">
+<meta property="og:url" content="https://n-jing.github.io/2021/04/25/animation-notes/index.html">
 <meta property="og:site_name" content="开发笔记">
+<meta property="og:description" content="Maya通过传递启动参数修改界面风格，请参考。 编写Maya插件的三种方式，纯c++、纯python、python调用c++。 Maya两种常见的插件安装方式，请参考 工具架图标 Mod文件模块化安装（推荐）   模块文件方便对插件进行管理。 maya python 2.0 and 1.0, PyMel比较慢 mayapy.exe 可以执行批处理 Maya attributes are shar">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-25T05:20:10.000Z">
+<meta property="article:modified_time" content="2021-05-19T11:29:29.352Z">
 <meta property="article:author" content="蒋静">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://n-jing.github.io/tags/eigen/">
+<link rel="canonical" href="https://n-jing.github.io/2021/04/25/animation-notes/">
 
 
 <script id="page-configurations">
@@ -36,12 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: eigen | 开发笔记</title>
+  <title>animation-notes | 开发笔记</title>
   
 
 
@@ -179,51 +183,118 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">eigen
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://n-jing.github.io/2021/04/25/animation-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Notes/images/avatar.gif">
+      <meta itemprop="name" content="蒋静">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="开发笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          animation-notes
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-25 13:20:10" itemprop="dateCreated datePublished" datetime="2021-04-25T13:20:10+08:00">2021-04-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-19 19:29:29" itemprop="dateModified" datetime="2021-05-19T19:29:29+08:00">2021-05-19</time>
+              </span>
+
+          
+            <span id="/Notes/2021/04/25/animation-notes/" class="post-meta-item leancloud_visitors" data-flag-title="animation-notes" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <ul>
+<li>Maya通过传递启动参数修改界面风格，<a target="_blank" rel="noopener" href="http://3dg.me/3d-graphics/maya/how-to-change-maya-2011-interface-color-and-ui-style">请参考</a>。</li>
+<li>编写Maya插件的三种方式，<a target="_blank" rel="noopener" href="https://www.pianshen.com/article/1693592021/">纯c++</a>、<a target="_blank" rel="noopener" href="https://www.chadvernon.com/maya-api-programming/">纯python</a>、<a target="_blank" rel="noopener" href="https://github.com/n-jing/ssds">python调用c++</a>。</li>
+<li>Maya两种常见的插件安装方式，<a target="_blank" rel="noopener" href="https://blog.l0v0.com/posts/e3ab7e13.html">请参考</a><ul>
+<li>工具架图标</li>
+<li>Mod文件模块化安装（推荐）</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/whwst/article/details/82077564">模块文件方便对插件进行管理</a>。</li>
+<li>maya python 2.0 and 1.0, <a target="_blank" rel="noopener" href="http://thetechnicalartist.com/resources/maya-python-api/">PyMel比较慢</a></li>
+<li>mayapy.exe 可以执行<a target="_blank" rel="noopener" href="https://help.autodesk.com/view/MAYAUL/2018/ENU/?guid=GUID-83799297-C629-48A8-BCE4-061D3F275215">批处理</a></li>
+<li>Maya attributes are shared across all nodes of the same type and plugs are unique to a single instance of a node.</li>
+<li><p>Maya运行外部脚本的方法：</p>
+<ol>
+<li>将脚本放到脚本路径下，脚本路径可通过<code>getenv MAYA_SCRIPT_PATH;</code>查看</li>
+<li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jing</span><br><span class="line">jing.demo()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>拖动脚本</p>
+<ul>
+<li>python文件，需定义<code>onMayaDroppedPythonFile</code>函数<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span>():</span></span><br><span class="line"> print(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">onMayaDroppedPythonFile</span>(<span class="params">param</span>):</span></span><br><span class="line"> hello()</span><br></pre></td></tr></table></figure></li>
+<li>mel文件</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-01-21T15:37:35+08:00"
-              content="2021-01-21">
-          01-21
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <div class="post-title">
-          <a class="post-title-link" href="/Notes/2021/01/21/eigen-notes/" itemprop="url">
-            <span itemprop="name">Eigen-Notes</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Notes/2021/03/17/reinstall-win/" rel="prev" title="reinstall win">
+      <i class="fa fa-chevron-left"></i> reinstall win
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Notes/2021/05/14/Python-notes/" rel="next" title="Python-notes">
+      Python-notes <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 

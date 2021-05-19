@@ -28,7 +28,7 @@
 <meta property="og:description" content="数值计算库梳理。 在稀疏矩阵分解中，如$LU$、$LL^T$、$LDL^T$以及$QR$分解，如果对矩阵进行行列变换，可以显著减少分解后矩阵的fill-in，即矩阵ordering的方式会重影响fill-in，对矩阵列重新排序通常可以使其 LU 或 QR 因子更加稀疏。ordering方法包括AMD(approximate minimum degree)、MMD(multiple minimum">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-25T09:07:13.000Z">
-<meta property="article:modified_time" content="2021-04-21T08:58:52.048Z">
+<meta property="article:modified_time" content="2021-04-22T05:26:37.939Z">
 <meta property="article:author" content="蒋静">
 <meta property="article:tag" content="numeric">
 <meta name="twitter:card" content="summary">
@@ -221,7 +221,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-21 16:58:52" itemprop="dateModified" datetime="2021-04-21T16:58:52+08:00">2021-04-21</time>
+                <time title="修改时间：2021-04-22 13:26:37" itemprop="dateModified" datetime="2021-04-22T13:26:37+08:00">2021-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,11 +257,23 @@
 <li>稀疏矩阵Cholesky分解包括supernodal和multifrontal方法，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/267371673">请参考</a>，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/266287595">请参考</a>。</li>
 <li>稀疏矩阵常见存储格式包括COO(coordinate format)，CSR(compressed sparse row format)，CSC(compressed sparse column format)等，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37525925">请参考</a></li>
 </ul>
-<p>数值方法</p>
-<ul>
+<h2 id="数值方法"><a href="#数值方法" class="headerlink" title="数值方法"></a>数值方法</h2><ul>
 <li>cg method <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/98642663">cg</a></li>
 <li>newton method <a target="_blank" rel="noopener" href="https://pjskd1.github.io/2019/03/07/%E7%89%9B%E9%A1%BF%E6%B3%95%E4%B8%8E%E6%8B%9F%E7%89%9B%E9%A1%BF%E6%B3%95/">newton</a> and <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29672873">newton</a></li>
 <li>implicit and explicit euler <a target="_blank" rel="noopener" href="https://jinyu.li/2017/05/03/pde-basics-1/">explicit euler</a>, <a target="_blank" rel="noopener" href="https://jinyu.li/2017/05/09/pde-basics-2/">semi-implicit euler</a>. <a target="_blank" rel="noopener" href="https://jinyu.li/2017/05/11/pde-basics-3/">implicit euler</a>. <a target="_blank" rel="noopener" href="https://adamwermus.wordpress.com/2016/12/05/comparing-conservation-of-energy-to-the-simple-pendulum-model/">energy conservation</a></li>
+</ul>
+<h2 id="二次优化求解"><a href="#二次优化求解" class="headerlink" title="二次优化求解"></a>二次优化求解</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/dymodi/article/details/50481839">等式约束</a><ul>
+<li>Full space method</li>
+<li>Range space method</li>
+<li>Null space method</li>
+</ul>
+</li>
+<li>不等式约束<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/dymodi/article/details/50358278">Active set method</a></li>
+<li>Interior-point methods</li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -346,6 +358,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">数值方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1%E4%BC%98%E5%8C%96%E6%B1%82%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">二次优化求解</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -359,7 +372,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Notes/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

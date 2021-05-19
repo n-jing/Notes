@@ -22,26 +22,26 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="开发笔记">
-<meta property="og:url" content="https://n-jing.github.io/tags/eigen/index.html">
+<meta property="og:url" content="https://n-jing.github.io/page/2/index.html">
 <meta property="og:site_name" content="开发笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="蒋静">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://n-jing.github.io/tags/eigen/">
+<link rel="canonical" href="https://n-jing.github.io/page/2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
+    isHome : true,
     isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: eigen | 开发笔记</title>
+  <title>开发笔记</title>
   
 
 
@@ -179,52 +179,192 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://n-jing.github.io/2021/01/21/eigen-notes/">
 
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">eigen
-          <small>标签</small>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Notes/images/avatar.gif">
+      <meta itemprop="name" content="蒋静">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="开发笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Notes/2021/01/21/eigen-notes/" class="post-title-link" itemprop="url">Eigen-Notes</a>
         </h2>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-21 15:37:35" itemprop="dateCreated datePublished" datetime="2021-01-21T15:37:35+08:00">2021-01-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-19 15:05:46" itemprop="dateModified" datetime="2021-05-19T15:05:46+08:00">2021-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Notes/categories/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数值计算库</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/Notes/2021/01/21/eigen-notes/" class="post-meta-item leancloud_visitors" data-flag-title="Eigen-Notes" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+          <ul>
+<li><code>Eigen::CholmodSupernodalLLT</code>只支持double，<code>static assertion failed: CHOLMOD_SUPPORTS_DOUBLE_PRECISION_ONLY</code></li>
+<li>SuiteSparse用法，<code>FIND_PACKAGE(SuiteSparse REQUIRED), $&#123;SuiteSparse_INCLUDE_DIRS&#125;, $&#123;SuiteSparse_LIBRARIES&#125;</code></li>
+<li><code>Eigen::CholmodSupernodalLLT</code> cpu上求解2千自由度大概需要0.1s, 1万自由度需要0.4s(cpu:8核， 3.9G)。</li>
+<li>eigen中vectorxd转化为sparse matrix，并且用vectorxd作为diagonal<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Matrix&lt;float, -1, 1&gt; m(3);</span><br><span class="line">m &lt;&lt; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>;</span><br><span class="line">DiagonalMatrix&lt;float, Dynamic&gt; diagm(m);</span><br><span class="line"><span class="function">SparseMatrix&lt;<span class="keyword">float</span>&gt; <span class="title">spm</span><span class="params">(diagm)</span></span>;</span><br></pre></td></tr></table></figure>
+先转换为diagonal，再转为sparse matrix</li>
+<li>eigen中<code>map&lt;matrix&gt;</code> 类可以直接向matrix类赋值。</li>
+<li>compile error when SimplicialLDLT and SimplicialLLT solve RowMajor SparseMatrix with eigen3.3.7. However, SimplicialLDLT works on ColMajor SparseMatrix well.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Eigen/SparseCholesky&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Eigen::SparseMatrix&lt;<span class="keyword">double</span>, Eigen::RowMajor&gt; A;</span><br><span class="line">  Eigen::SimplicialLDLT&lt;Eigen::SparseMatrix&lt;<span class="keyword">double</span>, Eigen::RowMajor&gt;&gt; solver;</span><br><span class="line">  solver.compute(A);</span><br><span class="line"></span><br><span class="line">  Eigen::Matrix&lt;<span class="keyword">double</span>, <span class="number">-1</span>, <span class="number">1</span>&gt; b;</span><br><span class="line">  Eigen::Matrix&lt;<span class="keyword">double</span>, <span class="number">-1</span>, <span class="number">1</span>&gt; x;</span><br><span class="line">  x = solver.solve(b);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><a target="_blank" rel="noopener" href="http://zhaoxuhui.top/blog/2019/09/03/eigen-note-4.html">仿射变换（平移、旋转、缩放）操作</a></li>
+<li><code>`m = matrix.cwiseMax(1).cwiseMin(0)</code>可以对矩阵（向量）进行0-1截断</li>
+</ul>
+
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-01-21T15:37:35+08:00"
-              content="2021-01-21">
-          01-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/Notes/2021/01/21/eigen-notes/" itemprop="url">
-            <span itemprop="name">Eigen-Notes</span>
-          </a>
-      </div>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
+  
+  
+  
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://n-jing.github.io/2021/01/21/hexo-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Notes/images/avatar.gif">
+      <meta itemprop="name" content="蒋静">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="开发笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Notes/2021/01/21/hexo-blog/" class="post-title-link" itemprop="url">通过hexo搭建个人博客</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-21 11:04:51" itemprop="dateCreated datePublished" datetime="2021-01-21T11:04:51+08:00">2021-01-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-28 09:29:39" itemprop="dateModified" datetime="2021-02-28T09:29:39+08:00">2021-02-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Notes/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/Notes/2021/01/21/hexo-blog/" class="post-meta-item leancloud_visitors" data-flag-title="通过hexo搭建个人博客" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>通过hexo搭建个人博客</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/2021/01/21/hexo-blog/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
     </div>
-  </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
   
   
   
 
+
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/Notes/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/Notes/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 
