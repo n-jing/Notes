@@ -28,7 +28,7 @@
 <meta property="og:description" content="Python基本数据类型  Numbers（数字） int（有符号整型） long（长整型[也可以代表八进制和十六进制]） float（浮点型） complex（复数）   String（字符串） List（列表） Tuple（元组） Dictionary（字典）   numpy中array元素维度必须一致，而list没有这要求，tuple元素可读不可写。list和tuple元素可以是任意类型。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-14T03:48:18.000Z">
-<meta property="article:modified_time" content="2021-05-14T06:44:25.890Z">
+<meta property="article:modified_time" content="2021-05-24T08:04:24.323Z">
 <meta property="article:author" content="蒋静">
 <meta name="twitter:card" content="summary">
 
@@ -212,10 +212,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-05-14 11:48:18 / 修改时间：14:44:25" itemprop="dateCreated datePublished" datetime="2021-05-14T11:48:18+08:00">2021-05-14</time>
+              <time title="创建时间：2021-05-14 11:48:18" itemprop="dateCreated datePublished" datetime="2021-05-14T11:48:18+08:00">2021-05-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-24 16:04:24" itemprop="dateModified" datetime="2021-05-24T16:04:24+08:00">2021-05-24</time>
+              </span>
 
           
             <span id="/Notes/2021/05/14/Python-notes/" class="post-meta-item leancloud_visitors" data-flag-title="Python-notes" title="阅读次数">
@@ -288,6 +294,48 @@
 <li>find_vcvarsall（第222行），添加return r’你的Microsoft Visual C++ Compiler for Python路径’（<code>return r&#39;D:\software\visualStudio\VC\Auxiliary\Build\vcvarsall.bat&#39;</code>）</li>
 </ul>
 <p>此外也可以修改<code>VS90COMNTOOLS</code>环境变量解决，<a target="_blank" rel="noopener" href="https://blog.csdn.net/secretx/article/details/17472107">请参考</a>。</p>
+<h2 id="python常见用法"><a href="#python常见用法" class="headerlink" title="python常见用法"></a>python常见用法</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23526961">常见用法</a></li>
+<li>‘’（单引号）和””（双引号）用法相同，’’（单引号）中”（双引号）不需要转义，””（双引号）中’（单引号）不需要转义，这样让程序更加简明；’’’’’’（三引号）主要是方便分段。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">&#x27;&quot;&quot; can be used without escape&#x27;</span>)</span><br><span class="line">print(<span class="string">&quot;&#x27; can be used withou escape&quot;</span>)</span><br><span class="line">print(<span class="string">&#x27;&#x27;&#x27;paragraph can be</span></span><br><span class="line"><span class="string">used directly&#x27;&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li><code>from termcolor import colored</code>，termcolor可以对输出进行颜色管理<code>print(colored(&#39;[ error ]: &#39;, &#39;red&#39;), &quot;error&quot;)</code></li>
+<li><code>with ... as ...</code>，with适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭／线程中锁的自动获取和释放等。<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012609509/article/details/72911564">请参考</a><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;１.txt&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    data = file.read()</span><br></pre></td></tr></table></figure></li>
+<li>python[关键字]（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/350295664）">https://zhuanlan.zhihu.com/p/350295664）</a></li>
+<li>yeild返回一个可迭代的 generator（生成器）对象，可以使用for循环或者调用next()方法遍历生成器对象来提取结果。与返回list相比，占用内存更小，但是多次访问存在重复计算的问题。</li>
+<li>异常处理，<code>try/except</code>，<code>try/except...else</code>，<code>try-finally</code>，<a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python3-errors-execptions.html">请参考</a><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">assert</span>(<span class="literal">False</span>)</span><br><span class="line"><span class="keyword">except</span> AssertionError <span class="keyword">as</span> error:</span><br><span class="line">    print(error)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;file.log&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">            read_data = file.read()</span><br><span class="line">    <span class="keyword">except</span> FileNotFoundError <span class="keyword">as</span> fnf_error:</span><br><span class="line">        print(fnf_error)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    print(<span class="string">&#x27;这句话，无论异常是否发生都会执行。&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">用法</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">sys.argv</td>
+<td style="text-align:center">脚本参数（list类型）</td>
+</tr>
+<tr>
+<td style="text-align:center">len(sys.argv)</td>
+<td style="text-align:center">脚本参数个数</td>
+</tr>
+<tr>
+<td style="text-align:center">print(“hello”, end=’’)</td>
+<td style="text-align:center">print不换行</td>
+</tr>
+<tr>
+<td style="text-align:center">None</td>
+<td style="text-align:center">特殊常量，表示不存在值或空值</td>
+</tr>
+<tr>
+<td style="text-align:center">assert</td>
+<td style="text-align:center">断言，False时触发异常</td>
+</tr>
+</tbody>
+</table>
+</div>
 
     </div>
 
@@ -365,7 +413,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E8%B0%83%E7%94%A8C-%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text">Python调用C++模块</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E8%B0%83%E7%94%A8C-%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text">Python调用C++模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">python常见用法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

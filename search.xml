@@ -21,6 +21,106 @@
       </tags>
   </entry>
   <entry>
+    <title>Python-notes</title>
+    <url>/Notes/2021/05/14/Python-notes/</url>
+    <content><![CDATA[<ul>
+<li><p>Python基本数据类型</p>
+<ul>
+<li>Numbers（数字）<ul>
+<li>int（有符号整型）</li>
+<li>long（长整型[也可以代表八进制和十六进制]）</li>
+<li>float（浮点型）</li>
+<li>complex（复数）</li>
+</ul>
+</li>
+<li>String（字符串）</li>
+<li>List（列表）</li>
+<li>Tuple（元组）</li>
+<li>Dictionary（字典）</li>
+</ul>
+</li>
+<li><p>numpy中array元素维度必须一致，而list没有这要求，tuple元素可读不可写。list和tuple元素可以是任意类型。</p>
+</li>
+</ul>
+<h2 id="Python调用C-模块"><a href="#Python调用C-模块" class="headerlink" title="Python调用C++模块"></a>Python调用C++模块</h2><ul>
+<li><p>将c++编译为python模块供python调用。主要流程为，<a href="https://zhuanlan.zhihu.com/p/25077636">请参考</a></p>
+<ul>
+<li>将c++编译为lib</li>
+<li>编写swig的*.i文件</li>
+<li>配置setup.py，包括<code>include_dirs</code>、<code>library_dirs</code>、<code>libraries</code>、<code>extra_compile_args</code>等。</li>
+<li>编译</li>
+</ul>
+</li>
+<li><p>如模块为纯c++编写，不涉及与python的数据交互（如模块调用没有参数，或者参数只是字符串，浮点数等），则相对容易一些，只用编写好*.i文件即可。<code>demo.c_method(3, &quot;file_path&quot;, 0.1)</code></p>
+</li>
+<li><p>如模块有与python的数据额交互，则需要包含相应的头文件，注册函数以及初始化模块。<code>demo.c_method([1, 2, 0.5])</code>，<a href="https://www.zouyesheng.com/python-module-c.html">请参考</a></p>
+<ul>
+<li><code>#include&lt;Python.h&gt;</code></li>
+<li>编写调用接口。<ul>
+<li>处理从 Python 传入的参数。</li>
+<li>实现功能逻辑。</li>
+<li>处理 C 中的返回值，包装成 Python 对象。</li>
+</ul>
+</li>
+<li>在一个 <code>PyMethodDef</code> 结构体中注册需要的函数。</li>
+<li>在一个初始化方法中注册模块名。</li>
+<li>最后，通过swig将文件编译为*.pyd。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Python.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> PyObject* <span class="title">W_add</span><span class="params">(PyObject* self, PyObject* args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> x;</span><br><span class="line">  <span class="keyword">int</span> y;</span><br><span class="line">  <span class="keyword">if</span>(!PyArg_ParseTuple(args, <span class="string">&quot;i|i&quot;</span>, &amp;x, &amp;y))</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">else</span> </span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> Py_BuildValue(<span class="string">&quot;i&quot;</span>, add(x, y));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> PyMethodDef ExtendMethods[] = &#123;</span><br><span class="line">  &#123;<span class="string">&quot;add&quot;</span>, W_add, METH_VARARGS, <span class="string">&quot;a function from C&quot;</span>&#125;,</span><br><span class="line">  &#123;<span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">PyMODINIT_FUNC <span class="title">initdemo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Py_InitModule(<span class="string">&quot;demo&quot;</span>, ExtendMethods);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="https://zhuanlan.zhihu.com/p/368361070">PyMethodDef中注册函数</a><br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> PyObject* (*Myds)(PyObject*,PyObject**,<span class="keyword">int64_t</span>,PyObject*);</span><br><span class="line"><span class="function"><span class="keyword">static</span> PyObject* <span class="title">say_hello</span><span class="params">(PyObject* self, PyObject* args)</span> </span>&#123; Py_RETURN_NONE; &#125;</span><br><span class="line"><span class="keyword">static</span> PyMethodDef methods[] = &#123;</span><br><span class="line">	&#123;<span class="string">&quot;hello&quot;</span>, (PyCFunction)say_hello, METH_VARARGS, <span class="literal">NULL</span>&#125;,</span><br><span class="line">	<span class="comment">// lambda 函数</span></span><br><span class="line">	&#123; <span class="string">&quot;lambda_hello&quot;</span>,</span><br><span class="line">	(PyCFunction)(Myds)[](PyObject* self, PyObject** args, <span class="keyword">int64_t</span> n, PyObject* kw) -&gt; PyObject* &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;&#125;,</span><br><span class="line">		METH_FASTCALL | METH_KEYWORDS,&#125;,</span><br><span class="line">	&#123;<span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>&#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></p>
+<p>将c++编译为python模块时找不到编译器，报错<code>Unable to find vcvarsall.bat</code>。参考<a href="https://blog.csdn.net/qq_33757398/article/details/89918102">博文</a>解决。找到python的<code>distutils/msvc9compiler.py</code>文件，做两处修改，</p>
+<ul>
+<li>get_build_version（第172行），添加<code>return 9.0</code></li>
+<li>find_vcvarsall（第222行），添加return r’你的Microsoft Visual C++ Compiler for Python路径’（<code>return r&#39;D:\software\visualStudio\VC\Auxiliary\Build\vcvarsall.bat&#39;</code>）</li>
+</ul>
+<p>此外也可以修改<code>VS90COMNTOOLS</code>环境变量解决，<a href="https://blog.csdn.net/secretx/article/details/17472107">请参考</a>。</p>
+<h2 id="python常见用法"><a href="#python常见用法" class="headerlink" title="python常见用法"></a>python常见用法</h2><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/23526961">常见用法</a></li>
+<li>‘’（单引号）和””（双引号）用法相同，’’（单引号）中”（双引号）不需要转义，””（双引号）中’（单引号）不需要转义，这样让程序更加简明；’’’’’’（三引号）主要是方便分段。<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(<span class="string">&#x27;&quot;&quot; can be used without escape&#x27;</span>)</span><br><span class="line">print(<span class="string">&quot;&#x27; can be used withou escape&quot;</span>)</span><br><span class="line">print(<span class="string">&#x27;&#x27;&#x27;paragraph can be</span></span><br><span class="line"><span class="string">used directly&#x27;&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li><code>from termcolor import colored</code>，termcolor可以对输出进行颜色管理<code>print(colored(&#39;[ error ]: &#39;, &#39;red&#39;), &quot;error&quot;)</code></li>
+<li><code>with ... as ...</code>，with适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭／线程中锁的自动获取和释放等。<a href="https://blog.csdn.net/u012609509/article/details/72911564">请参考</a><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;１.txt&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    data = file.read()</span><br></pre></td></tr></table></figure></li>
+<li>python[关键字]（<a href="https://zhuanlan.zhihu.com/p/350295664）">https://zhuanlan.zhihu.com/p/350295664）</a></li>
+<li>yeild返回一个可迭代的 generator（生成器）对象，可以使用for循环或者调用next()方法遍历生成器对象来提取结果。与返回list相比，占用内存更小，但是多次访问存在重复计算的问题。</li>
+<li>异常处理，<code>try/except</code>，<code>try/except...else</code>，<code>try-finally</code>，<a href="https://www.runoob.com/python3/python3-errors-execptions.html">请参考</a><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">assert</span>(<span class="literal">False</span>)</span><br><span class="line"><span class="keyword">except</span> AssertionError <span class="keyword">as</span> error:</span><br><span class="line">    print(error)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;file.log&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">            read_data = file.read()</span><br><span class="line">    <span class="keyword">except</span> FileNotFoundError <span class="keyword">as</span> fnf_error:</span><br><span class="line">        print(fnf_error)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    print(<span class="string">&#x27;这句话，无论异常是否发生都会执行。&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">用法</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">sys.argv</td>
+<td style="text-align:center">脚本参数（list类型）</td>
+</tr>
+<tr>
+<td style="text-align:center">len(sys.argv)</td>
+<td style="text-align:center">脚本参数个数</td>
+</tr>
+<tr>
+<td style="text-align:center">print(“hello”, end=’’)</td>
+<td style="text-align:center">print不换行</td>
+</tr>
+<tr>
+<td style="text-align:center">None</td>
+<td style="text-align:center">特殊常量，表示不存在值或空值</td>
+</tr>
+<tr>
+<td style="text-align:center">assert</td>
+<td style="text-align:center">断言，False时触发异常</td>
+</tr>
+</tbody>
+</table>
+</div>
+]]></content>
+  </entry>
+  <entry>
     <title>Numeric-Notes</title>
     <url>/Notes/2021/01/25/Numeric-Notes/</url>
     <content><![CDATA[<ul>
@@ -54,6 +154,44 @@
       <tags>
         <tag>numeric</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>animation-notes</title>
+    <url>/Notes/2021/04/25/animation-notes/</url>
+    <content><![CDATA[<ul>
+<li>Maya通过传递启动参数修改界面风格，<a href="http://3dg.me/3d-graphics/maya/how-to-change-maya-2011-interface-color-and-ui-style">请参考</a>。</li>
+<li>编写Maya插件的三种方式，<a href="https://www.pianshen.com/article/1693592021/">纯c++</a>、<a href="https://www.chadvernon.com/maya-api-programming/">纯python</a>、<a href="https://github.com/n-jing/ssds">python调用c++</a>。</li>
+<li>Maya两种常见的插件安装方式，<a href="https://blog.l0v0.com/posts/e3ab7e13.html">请参考</a><ul>
+<li>工具架图标</li>
+<li>Mod文件模块化安装（推荐）</li>
+</ul>
+</li>
+<li><a href="https://blog.csdn.net/whwst/article/details/82077564">模块文件方便对插件进行管理</a>。</li>
+<li>maya python 2.0 and 1.0, <a href="http://thetechnicalartist.com/resources/maya-python-api/">PyMel比较慢</a></li>
+<li>mayapy.exe 可以执行<a href="https://help.autodesk.com/view/MAYAUL/2018/ENU/?guid=GUID-83799297-C629-48A8-BCE4-061D3F275215">批处理</a></li>
+<li>Maya attributes are shared across all nodes of the same type and plugs are unique to a single instance of a node.</li>
+<li><p>Maya运行外部脚本的方法：</p>
+<ol>
+<li>将脚本放到脚本路径下，脚本路径可通过<code>getenv MAYA_SCRIPT_PATH;</code>查看</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jing</span><br><span class="line">jing.demo()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>拖动脚本</p>
+<ul>
+<li>python文件，需定义<code>onMayaDroppedPythonFile</code>函数<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span>():</span></span><br><span class="line"> print(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">onMayaDroppedPythonFile</span>(<span class="params">param</span>):</span></span><br><span class="line"> hello()</span><br></pre></td></tr></table></figure></li>
+<li>mel文件</li>
+</ul>
+</li>
+<li><p><a href="https://knowledge.autodesk.com/zh-hans/support/maya/learn-explore/caas/CloudHelp/cloudhelp/2020/CHS/Maya-Animation/files/GUID-6D38EAEA-6032-471E-BD0E-54A74D4443C0-htm.html">maya曲线编辑器</a>，更加精细地调节物体运动轨迹。</p>
+</li>
+<li><a href="https://download.autodesk.com/us/maya/maya_2014_gettingstarted_chs/index.html?url=files/Conditional_expressions_Creating_a_conditional_expression.htm,topicNumber=d30e39576">maya表达式编辑器</a></li>
+<li><p><a href="https://blog.csdn.net/weixin_41106066/article/details/89816151">maya形变编辑器</a>，混合变形，<a href="https://www.bilibili.com/video/av46681622?from=search&amp;seid=17757180792033942012">视频</a>。</p>
+</li>
+<li><p>软选择，b开启和关闭。在”windows”-“general editors”-“tool setting”设置。</p>
+</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>bat-notes</title>
@@ -119,7 +257,40 @@
 </table>
 </div>
 <p>win bat常见命令，<a href="https://wsgzao.github.io/post/windows-batch/">请参考</a><br>markdown check and cross <code>&amp;check; and &amp;cross;</code> &check; and &cross;</p>
-<h2 id="git-用法"><a href="#git-用法" class="headerlink" title="git 用法"></a>git 用法</h2><p>. 合并分支指定文件，<code>git checkout dev new_file.txt</code>, <code>git commit -m &quot;add file frome dev branch&quot;</code>，<a href="https://2fz1.me/2018/02/09/gitmerge/">请参考</a>。</p>
+<h2 id="git-用法"><a href="#git-用法" class="headerlink" title="git 用法"></a>git 用法</h2><ul>
+<li>合并分支指定文件，<code>git checkout dev new_file.txt</code>, <code>git commit -m &quot;add file frome dev branch&quot;</code>，<a href="https://2fz1.me/2018/02/09/gitmerge/">请参考</a>。</li>
+<li><a href="https://blog.csdn.net/wq6ylg08/article/details/114106272">git pull策略</a></li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">pull选项</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">git config pull.rebase false</td>
+<td style="text-align:center">merge (the default strategy)</td>
+</tr>
+<tr>
+<td style="text-align:center">git config pull.rebase true</td>
+<td style="text-align:center">rebase</td>
+</tr>
+<tr>
+<td style="text-align:center">git config pull.ff only</td>
+<td style="text-align:center">fast-forward only</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><a href="https://blog.csdn.net/daguanjia11/article/details/73810577">git stash</a>，没有在git版本控制中的文件，不会被git stash</li>
+<li><a href="https://www.jianshu.com/p/4a8f4af4e803">git rebase</a>对线性提交进行编辑、删除、复制、粘贴</li>
+<li><a href="https://www.jianshu.com/p/79027f3a5549">git快进合并模式</a>，直接将当前分支指针指向要合并的分支</li>
+<li>git<a href="https://www.jianshu.com/p/bb97fabb475e">查看分支差异</a>。</li>
+</ul>
 <div class="table-container">
 <table>
 <thead>
@@ -158,6 +329,10 @@
 <td style="text-align:center">添加远端分支网址</td>
 </tr>
 <tr>
+<td style="text-align:center">git remote set-url origin url</td>
+<td style="text-align:center">更改远端分支网址</td>
+</tr>
+<tr>
 <td style="text-align:center">git branch -m oldName newName</td>
 <td style="text-align:center">分支重命名</td>
 </tr>
@@ -189,6 +364,26 @@
 <td style="text-align:center">git reflog</td>
 <td style="text-align:center">分支转折点记录</td>
 </tr>
+<tr>
+<td style="text-align:center">git fetch</td>
+<td style="text-align:center">查询远程仓库分支的最新提交，并将其记录到FETCH_HEAD</td>
+</tr>
+<tr>
+<td style="text-align:center">git stash save “temp stash”</td>
+<td style="text-align:center">保存最新的进度，将当前修改放到stash</td>
+</tr>
+<tr>
+<td style="text-align:center">git stash pop</td>
+<td style="text-align:center">恢复最新的进度到工作区</td>
+</tr>
+<tr>
+<td style="text-align:center">git rebase -i earlier_commit_id commit_id</td>
+<td style="text-align:center">对线性提交进行修改</td>
+</tr>
+<tr>
+<td style="text-align:center">git diff branch1 branch2 —stat</td>
+<td style="text-align:center">查看分支差异</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -204,9 +399,11 @@
 <li>类的初始化列表不能调函数<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">V</span></span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">      V(<span class="keyword">int</span> a) : t_[<span class="number">0</span>](a) &#123; &#125;</span><br><span class="line">      <span class="built_in">array</span>&lt;<span class="keyword">int</span>, 1&gt; t_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 <li>error C2589: “(”: “::”右边的非法标记 。在VC++种同时包含头文件#include <windows.h>和#include <algorithm>后就会出现无法正常使用std标准库中的min和max模板函数。在预定义处理器中添加定义NOMINMAX来禁止使用Vsual C++的min/max宏定义。<a href="https://blog.csdn.net/u013925378/article/details/84402108">请参考</a>。</algorithm></windows.h></li>
 <li>fbxsdk未定义，需要添加FBXSDK_SHARED宏。If you are using a dynamic library version of the FBX SDK, add FBXSDK_SHARED to the preprocessor definitions of your project。You need to define “FBXSDK_SHARED” if you are using the DLLs.</li>
-<li>在模板类中，可以使用模板提供的类型，如<code>typedef typename TDataType::Real Real</code>，其中<code>TDataType</code>是模板参数，而<code>Real</code>是<code>TDataType</code>中定义的类型（结构体或者类）。<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> TDataType&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ParticleSystem</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">typename</span> TDataType::Real Real;</span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">typename</span> TDataType::Coord Coord;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>在模板类中，可以使用模板提供的类型，如<code>typedef typename TDataType::Real Real</code>，其中<code>TDataType</code>是模板参数，而<code>Real</code>是<code>TDataType</code>中定义的类型（结构体或者类）。<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> TDataType&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ParticleSystem</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">typename</span> TDataType::Real Real;</span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">typename</span> TDataType::Coord Coord;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> TDataType&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ParticleSystem</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">using</span> Scalar = TDataType</span><br><span class="line">&#125;</span><br><span class="line">ParticleSystem&lt;TDataType&gt;::Scalar p;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 <li>显式指定子类调用父类方法，<code>Child.Parent::method()</code>，对于模板类不用加模板参数。</li>
 <li><code>vector&lt;set&lt;int&gt;&gt;</code>不支持并行写入，set插入元素可能导致vector reallocate</li>
+<li>多线程运行结果和关闭多线程运行结果不一致，可能是浮点数相加的前后顺序造成的。<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">double</span> c = <span class="number">1.7</span>;</span><br><span class="line"><span class="keyword">double</span> d = <span class="number">1.9</span>;</span><br><span class="line"><span class="keyword">double</span> e = <span class="number">3.3</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; setprecision(<span class="number">50</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; (c+d+e) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; (d+c+e) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; (e+c+d) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
       <categories>
@@ -228,7 +425,29 @@
 <li>eigen中<code>map&lt;matrix&gt;</code> 类可以直接向matrix类赋值。</li>
 <li>compile error when SimplicialLDLT and SimplicialLLT solve RowMajor SparseMatrix with eigen3.3.7. However, SimplicialLDLT works on ColMajor SparseMatrix well.<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Eigen/SparseCholesky&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Eigen::SparseMatrix&lt;<span class="keyword">double</span>, Eigen::RowMajor&gt; A;</span><br><span class="line">  Eigen::SimplicialLDLT&lt;Eigen::SparseMatrix&lt;<span class="keyword">double</span>, Eigen::RowMajor&gt;&gt; solver;</span><br><span class="line">  solver.compute(A);</span><br><span class="line"></span><br><span class="line">  Eigen::Matrix&lt;<span class="keyword">double</span>, <span class="number">-1</span>, <span class="number">1</span>&gt; b;</span><br><span class="line">  Eigen::Matrix&lt;<span class="keyword">double</span>, <span class="number">-1</span>, <span class="number">1</span>&gt; x;</span><br><span class="line">  x = solver.solve(b);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><a href="http://zhaoxuhui.top/blog/2019/09/03/eigen-note-4.html">仿射变换（平移、旋转、缩放）操作</a></li>
-<li><code>`m = matrix.cwiseMax(1).cwiseMin(0)</code>可以对矩阵（向量）进行0-1截断</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">操作</th>
+<th style="text-align:center">api</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">sparsematrix得到最大元素</td>
+<td style="text-align:center"><code>matrix.coeffs().maxCoeff()</code></td>
+</tr>
+<tr>
+<td style="text-align:center">对矩阵（向量）进行0-1截断</td>
+<td style="text-align:center"><code>m = matrix.cwiseMax(1).cwiseMin(0)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><code>Eigen::saveMarket(m, &quot;path.mtx&quot;)</code>可以将数据保存为mtx，方便调试，头文件为<code>#include &lt;unsupported/Eigen/SparseExtra&gt;</code>，通过<code>loadMarket(sparseMatrix, path)</code>读取。</li>
 </ul>
 ]]></content>
       <categories>
@@ -687,95 +906,6 @@
 <h2 id="win-构建工程"><a href="#win-构建工程" class="headerlink" title="win 构建工程"></a>win 构建工程</h2><p>cmake通常有两种构建工程的方法，<br>. 生成makefile, 通过make(nmake)构建。可以通过<code>cmake .. -G &quot;Unix Makefiles&quot;</code>指定生成Makefile，或者在CMakeLists.txt的同一级创建一个PreLoad.cmake<code>set(CMAKE_GENERATOR &quot;Unix Makefiles&quot; CACHE INTERNAL &quot;&quot; FORCE)</code>。<a href="https://blog.csdn.net/ducal90/article/details/96432700">请参考</a><br>. 生成vs的sln和vcxproj, 然后通过msbuild构建<code>msbuild HelloWorld.sln</code></p>
 <p>cmake编译项目<code>cmake --build . -- /p:Configuration=Release</code></p>
 <h2 id="docker使用"><a href="#docker使用" class="headerlink" title="docker使用"></a>docker使用</h2><p>安装，<a href="https://www.jianshu.com/p/74291add4ee5">请参考</a><br>常见命令<br>|查看所有容器|docker ps -a|<br>|查看活动容器|docker ps|<br>|下载镜像|docker pull remote-images|<br>|运行镜像后自动删除容器|docker run —rm  local-images|<br>|运行镜像后自动删除容器，并指定启动任务|docker run —rm  -it local-images bash|<br>|查看镜像|docker images|<br>|根据docker-compose.yml文件创建容器|docker-compose up|</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>animation-notes</title>
-    <url>/Notes/2021/04/25/animation-notes/</url>
-    <content><![CDATA[<ul>
-<li>Maya通过传递启动参数修改界面风格，<a href="http://3dg.me/3d-graphics/maya/how-to-change-maya-2011-interface-color-and-ui-style">请参考</a>。</li>
-<li>编写Maya插件的三种方式，<a href="https://www.pianshen.com/article/1693592021/">纯c++</a>、<a href="https://www.chadvernon.com/maya-api-programming/">纯python</a>、<a href="https://github.com/n-jing/ssds">python调用c++</a>。</li>
-<li>Maya两种常见的插件安装方式，<a href="https://blog.l0v0.com/posts/e3ab7e13.html">请参考</a><ul>
-<li>工具架图标</li>
-<li>Mod文件模块化安装（推荐）</li>
-</ul>
-</li>
-<li><a href="https://blog.csdn.net/whwst/article/details/82077564">模块文件方便对插件进行管理</a>。</li>
-<li>maya python 2.0 and 1.0, <a href="http://thetechnicalartist.com/resources/maya-python-api/">PyMel比较慢</a></li>
-<li>mayapy.exe 可以执行<a href="https://help.autodesk.com/view/MAYAUL/2018/ENU/?guid=GUID-83799297-C629-48A8-BCE4-061D3F275215">批处理</a></li>
-<li>Maya attributes are shared across all nodes of the same type and plugs are unique to a single instance of a node.</li>
-<li><p>Maya运行外部脚本的方法：</p>
-<ol>
-<li>将脚本放到脚本路径下，脚本路径可通过<code>getenv MAYA_SCRIPT_PATH;</code>查看</li>
-<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jing</span><br><span class="line">jing.demo()</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>拖动脚本</p>
-<ul>
-<li>python文件，需定义<code>onMayaDroppedPythonFile</code>函数<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span>():</span></span><br><span class="line"> print(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">onMayaDroppedPythonFile</span>(<span class="params">param</span>):</span></span><br><span class="line"> hello()</span><br></pre></td></tr></table></figure></li>
-<li>mel文件</li>
-</ul>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>Python-notes</title>
-    <url>/Notes/2021/05/14/Python-notes/</url>
-    <content><![CDATA[<ul>
-<li><p>Python基本数据类型</p>
-<ul>
-<li>Numbers（数字）<ul>
-<li>int（有符号整型）</li>
-<li>long（长整型[也可以代表八进制和十六进制]）</li>
-<li>float（浮点型）</li>
-<li>complex（复数）</li>
-</ul>
-</li>
-<li>String（字符串）</li>
-<li>List（列表）</li>
-<li>Tuple（元组）</li>
-<li>Dictionary（字典）</li>
-</ul>
-</li>
-<li><p>numpy中array元素维度必须一致，而list没有这要求，tuple元素可读不可写。list和tuple元素可以是任意类型。</p>
-</li>
-</ul>
-<h2 id="Python调用C-模块"><a href="#Python调用C-模块" class="headerlink" title="Python调用C++模块"></a>Python调用C++模块</h2><ul>
-<li><p>将c++编译为python模块供python调用。主要流程为，<a href="https://zhuanlan.zhihu.com/p/25077636">请参考</a></p>
-<ul>
-<li>将c++编译为lib</li>
-<li>编写swig的*.i文件</li>
-<li>配置setup.py，包括<code>include_dirs</code>、<code>library_dirs</code>、<code>libraries</code>、<code>extra_compile_args</code>等。</li>
-<li>编译</li>
-</ul>
-</li>
-<li><p>如模块为纯c++编写，不涉及与python的数据交互（如模块调用没有参数，或者参数只是字符串，浮点数等），则相对容易一些，只用编写好*.i文件即可。<code>demo.c_method(3, &quot;file_path&quot;, 0.1)</code></p>
-</li>
-<li><p>如模块有与python的数据额交互，则需要包含相应的头文件，注册函数以及初始化模块。<code>demo.c_method([1, 2, 0.5])</code>，<a href="https://www.zouyesheng.com/python-module-c.html">请参考</a></p>
-<ul>
-<li><code>#include&lt;Python.h&gt;</code></li>
-<li>编写调用接口。<ul>
-<li>处理从 Python 传入的参数。</li>
-<li>实现功能逻辑。</li>
-<li>处理 C 中的返回值，包装成 Python 对象。</li>
-</ul>
-</li>
-<li>在一个 <code>PyMethodDef</code> 结构体中注册需要的函数。</li>
-<li>在一个初始化方法中注册模块名。</li>
-<li>最后，通过swig将文件编译为*.pyd。</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Python.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> PyObject* <span class="title">W_add</span><span class="params">(PyObject* self, PyObject* args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> x;</span><br><span class="line">  <span class="keyword">int</span> y;</span><br><span class="line">  <span class="keyword">if</span>(!PyArg_ParseTuple(args, <span class="string">&quot;i|i&quot;</span>, &amp;x, &amp;y))</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">else</span> </span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> Py_BuildValue(<span class="string">&quot;i&quot;</span>, add(x, y));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> PyMethodDef ExtendMethods[] = &#123;</span><br><span class="line">  &#123;<span class="string">&quot;add&quot;</span>, W_add, METH_VARARGS, <span class="string">&quot;a function from C&quot;</span>&#125;,</span><br><span class="line">  &#123;<span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">PyMODINIT_FUNC <span class="title">initdemo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Py_InitModule(<span class="string">&quot;demo&quot;</span>, ExtendMethods);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><a href="https://zhuanlan.zhihu.com/p/368361070">PyMethodDef中注册函数</a><br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> PyObject* (*Myds)(PyObject*,PyObject**,<span class="keyword">int64_t</span>,PyObject*);</span><br><span class="line"><span class="function"><span class="keyword">static</span> PyObject* <span class="title">say_hello</span><span class="params">(PyObject* self, PyObject* args)</span> </span>&#123; Py_RETURN_NONE; &#125;</span><br><span class="line"><span class="keyword">static</span> PyMethodDef methods[] = &#123;</span><br><span class="line">	&#123;<span class="string">&quot;hello&quot;</span>, (PyCFunction)say_hello, METH_VARARGS, <span class="literal">NULL</span>&#125;,</span><br><span class="line">	<span class="comment">// lambda 函数</span></span><br><span class="line">	&#123; <span class="string">&quot;lambda_hello&quot;</span>,</span><br><span class="line">	(PyCFunction)(Myds)[](PyObject* self, PyObject** args, <span class="keyword">int64_t</span> n, PyObject* kw) -&gt; PyObject* &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;&#125;,</span><br><span class="line">		METH_FASTCALL | METH_KEYWORDS,&#125;,</span><br><span class="line">	&#123;<span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>&#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></p>
-<p>将c++编译为python模块时找不到编译器，报错<code>Unable to find vcvarsall.bat</code>。参考<a href="https://blog.csdn.net/qq_33757398/article/details/89918102">博文</a>解决。找到python的<code>distutils/msvc9compiler.py</code>文件，做两处修改，</p>
-<ul>
-<li>get_build_version（第172行），添加<code>return 9.0</code></li>
-<li>find_vcvarsall（第222行），添加return r’你的Microsoft Visual C++ Compiler for Python路径’（<code>return r&#39;D:\software\visualStudio\VC\Auxiliary\Build\vcvarsall.bat&#39;</code>）</li>
-</ul>
-<p>此外也可以修改<code>VS90COMNTOOLS</code>环境变量解决，<a href="https://blog.csdn.net/secretx/article/details/17472107">请参考</a>。</p>
 ]]></content>
   </entry>
 </search>
