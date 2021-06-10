@@ -21,6 +21,49 @@
       </tags>
   </entry>
   <entry>
+    <title>Numeric-Notes</title>
+    <url>/Notes/2021/01/25/Numeric-Notes/</url>
+    <content><![CDATA[<ul>
+<li><a href="https://milkpku.github.io/blog/2017/12/15/C++%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97%E5%BA%93%E6%A2%B3%E7%90%86/">数值计算库梳理</a>。</li>
+<li>在稀疏矩阵分解中，如$LU$、$LL^T$、$LDL^T$以及$QR$分解，如果对矩阵进行行列变换，可以显著减少分解后矩阵的fill-in，即矩阵ordering的方式会重影响fill-in，对矩阵列重新排序通常可以使其 LU 或 QR 因子更加稀疏。ordering方法包括AMD(approximate minimum degree)、MMD(multiple minimum degree)，<a href="https://ww2.mathworks.cn/help/matlab/math/sparse-matrix-operations.html#responsive_offcanvas">请参考matlab</a>，<a href="https://eigen.tuxfamily.org/dox/group__OrderingMethods__Module.html">eigen</a>，<a href="https://zhuanlan.zhihu.com/p/94617545">知乎</a>。</li>
+<li>稀疏矩阵Cholesky分解包括supernodal和multifrontal方法，<a href="https://zhuanlan.zhihu.com/p/267371673">请参考</a>，<a href="https://zhuanlan.zhihu.com/p/266287595">请参考</a>。</li>
+<li>稀疏矩阵常见存储格式包括COO(coordinate format)，CSR(compressed sparse row format)，CSC(compressed sparse column format)等，<a href="https://zhuanlan.zhihu.com/p/37525925">请参考</a></li>
+</ul>
+<h2 id="数值方法"><a href="#数值方法" class="headerlink" title="数值方法"></a>数值方法</h2><ul>
+<li>cg method <a href="https://zhuanlan.zhihu.com/p/98642663">cg</a></li>
+<li>newton method <a href="https://pjskd1.github.io/2019/03/07/%E7%89%9B%E9%A1%BF%E6%B3%95%E4%B8%8E%E6%8B%9F%E7%89%9B%E9%A1%BF%E6%B3%95/">newton</a> and <a href="https://zhuanlan.zhihu.com/p/29672873">newton</a></li>
+<li><p>implicit and explicit euler <a href="https://jinyu.li/2017/05/03/pde-basics-1/">explicit euler</a>, <a href="https://jinyu.li/2017/05/09/pde-basics-2/">semi-implicit euler</a>. <a href="https://jinyu.li/2017/05/11/pde-basics-3/">implicit euler</a>. <a href="https://adamwermus.wordpress.com/2016/12/05/comparing-conservation-of-energy-to-the-simple-pendulum-model/">energy conservation</a></p>
+</li>
+<li><p><script type="math/tex">A*\Sigma</script>  和  \(A*\Sigma\)不相等</p>
+<ul>
+<li>$A*\Sigma$ A每列乘上$\Sigma$</li>
+<li>$\Sigma * A$A每行乘上$\Sigma$</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<h2 id="二次优化求解"><a href="#二次优化求解" class="headerlink" title="二次优化求解"></a>二次优化求解</h2><ul>
+<li><a href="https://blog.csdn.net/dymodi/article/details/50481839">等式约束</a><ul>
+<li>Full space method</li>
+<li>Range space method</li>
+<li>Null space method</li>
+</ul>
+</li>
+<li>不等式约束<ul>
+<li><a href="https://blog.csdn.net/dymodi/article/details/50358278">Active set method</a></li>
+<li>Interior-point methods</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数值计算</category>
+      </categories>
+      <tags>
+        <tag>numeric</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python-notes</title>
     <url>/Notes/2021/05/14/Python-notes/</url>
     <content><![CDATA[<ul>
@@ -118,42 +161,15 @@
 </tbody>
 </table>
 </div>
-]]></content>
-  </entry>
-  <entry>
-    <title>Numeric-Notes</title>
-    <url>/Notes/2021/01/25/Numeric-Notes/</url>
-    <content><![CDATA[<ul>
-<li><a href="https://milkpku.github.io/blog/2017/12/15/C++%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97%E5%BA%93%E6%A2%B3%E7%90%86/">数值计算库梳理</a>。</li>
-<li>在稀疏矩阵分解中，如$LU$、$LL^T$、$LDL^T$以及$QR$分解，如果对矩阵进行行列变换，可以显著减少分解后矩阵的fill-in，即矩阵ordering的方式会重影响fill-in，对矩阵列重新排序通常可以使其 LU 或 QR 因子更加稀疏。ordering方法包括AMD(approximate minimum degree)、MMD(multiple minimum degree)，<a href="https://ww2.mathworks.cn/help/matlab/math/sparse-matrix-operations.html#responsive_offcanvas">请参考matlab</a>，<a href="https://eigen.tuxfamily.org/dox/group__OrderingMethods__Module.html">eigen</a>，<a href="https://zhuanlan.zhihu.com/p/94617545">知乎</a>。</li>
-<li>稀疏矩阵Cholesky分解包括supernodal和multifrontal方法，<a href="https://zhuanlan.zhihu.com/p/267371673">请参考</a>，<a href="https://zhuanlan.zhihu.com/p/266287595">请参考</a>。</li>
-<li>稀疏矩阵常见存储格式包括COO(coordinate format)，CSR(compressed sparse row format)，CSC(compressed sparse column format)等，<a href="https://zhuanlan.zhihu.com/p/37525925">请参考</a></li>
-</ul>
-<h2 id="数值方法"><a href="#数值方法" class="headerlink" title="数值方法"></a>数值方法</h2><ul>
-<li>cg method <a href="https://zhuanlan.zhihu.com/p/98642663">cg</a></li>
-<li>newton method <a href="https://pjskd1.github.io/2019/03/07/%E7%89%9B%E9%A1%BF%E6%B3%95%E4%B8%8E%E6%8B%9F%E7%89%9B%E9%A1%BF%E6%B3%95/">newton</a> and <a href="https://zhuanlan.zhihu.com/p/29672873">newton</a></li>
-<li>implicit and explicit euler <a href="https://jinyu.li/2017/05/03/pde-basics-1/">explicit euler</a>, <a href="https://jinyu.li/2017/05/09/pde-basics-2/">semi-implicit euler</a>. <a href="https://jinyu.li/2017/05/11/pde-basics-3/">implicit euler</a>. <a href="https://adamwermus.wordpress.com/2016/12/05/comparing-conservation-of-energy-to-the-simple-pendulum-model/">energy conservation</a></li>
-</ul>
-<h2 id="二次优化求解"><a href="#二次优化求解" class="headerlink" title="二次优化求解"></a>二次优化求解</h2><ul>
-<li><a href="https://blog.csdn.net/dymodi/article/details/50481839">等式约束</a><ul>
-<li>Full space method</li>
-<li>Range space method</li>
-<li>Null space method</li>
-</ul>
-</li>
-<li>不等式约束<ul>
-<li><a href="https://blog.csdn.net/dymodi/article/details/50358278">Active set method</a></li>
-<li>Interior-point methods</li>
-</ul>
-</li>
+<h2 id="正则表达"><a href="#正则表达" class="headerlink" title="正则表达"></a>正则表达</h2><ul>
+<li>()可以分组，\s匹配任意空白字符，等价于[\t\n\r\f]。pattern=’(\s[a-z]*\s)’ + ‘(\d+)’</li>
+<li>match：尝试从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match()就返回none。</li>
+<li>search：扫描整个字符串并返回第一个成功的匹配。</li>
+<li>findall：在字符串中找到正则表达式所匹配的所有子串，并返回一个列表，如果没有找到匹配的，则返回空列表。</li>
+<li><code>re.findall(pattern, string, flags=0)</code></li>
+<li>匹配数字 <code>numeric_const_pattern = &#39;([-+]? (?: (?: \d* \. \d+ ) | (?: \d+ \.? ) )(?: [Ee] [+-]? \d+ ) ?)&#39;</code></li>
 </ul>
 ]]></content>
-      <categories>
-        <category>数值计算</category>
-      </categories>
-      <tags>
-        <tag>numeric</tag>
-      </tags>
   </entry>
   <entry>
     <title>animation-notes</title>
@@ -419,9 +435,50 @@
 ]]></content>
   </entry>
   <entry>
+    <title>cmake-node</title>
+    <url>/Notes/2021/06/04/cmake-node/</url>
+    <content><![CDATA[<ul>
+<li>cmake路径只支持<code>/</code>，不支持<code>\</code>，可以通过<code>string(REPLACE &quot;/&quot; &quot;\\&quot; GROUP_PATH &quot;$&#123;SRC_PATH_REL&#125;&quot;)</code>替换。</li>
+<li>如果cuda没有安装在默认位置，通过<code>CMAKE_CUDA_COMPILER</code>指定nvcc路径，<code>set(CMAKE_CUDA_COMPILER &quot;C:/UserProgramFiles/Cuda/bin/nvcc.exe&quot;)</code></li>
+<li>cmake设置平台<code>cmake -G &quot;Visual Studio 15 2017&quot; -A x64</code>或者<code>cmake -G &quot;Unix Makefiles&quot; -A Win32</code>，然后可以设置Release模型，<code>cmake --build . --config Release</code></li>
+<li>linux可以通过<code>LD_LIBRARY_PATH</code>宏设置库搜索路径，而win没有相应的宏，为了让应用程序链接指定的库，有两种解决方法，<a href="https://stackoverflow.com/questions/9008618/is-there-any-way-to-simulate-ld-library-path-in-windows">请参考</a><ul>
+<li>[&check;] 将库拷贝到应用程序目录</li>
+<li>[&cross;] 将库路径加入PATH，并放在系统搜索路径前。(这个方法不一定可行，因为系统搜索路径在前)</li>
+</ul>
+</li>
+<li><p>命令行编译<code>.sln</code>解决方法，</p>
+<ul>
+<li><code>devenv demo.sln /Build</code></li>
+<li><code>msbuild demo.sln /t:&lt;proj1&gt;[,&lt;proj2&gt; ...] /p:configuration=&quot;release&quot;</code></li>
+<li>cmake生成的*.sln 文件，解决方案中不包括INSTALL和ZERO_CHECK，ZERO_CHECK工程主要是监视CMakeLists.txt文件的变化。</li>
+</ul>
+</li>
+<li><p>cmake配置ninja生成器，首先需要将<code>rc.exe, ninja.exe</code>路径包含到<code>PATH</code>，不然ninja会出错，<a href="https://stackoverflow.com/questions/57269635/unable-to-resolve-cl-exe-is-not-able-to-compile-a-simple-test-program">请参考</a>。</p>
+</li>
+<li>cmake指定安装目录<code>cmake .. -G &quot;xxx&quot; -DCMAKE_INSTALL_PREFIX=/install/dir</code></li>
+<li>cmake构造指定目标<code>cmake --build . --target demo</code></li>
+<li>安装项目，首先指定安装目录，<code>cmake .. -G &quot;xxx&quot; -DCMAKE_INSTALL_PREFIX=/install/dir</code>，然后有两种方式安装<br>. <code>msbuild /P:Configuration=Release INSTALL.vcxproj</code><br>. <code>cmake --build . --target INSTALL --config Release</code></li>
+<li>cmake install指定安装目录<code>cmake --install dir_to_cmake_install.cmake --prefix /usr</code>，<a href="https://stackoverflow.com/a/60020133">请参考</a></li>
+<li>make test和make check用法，在cmake中添加add_test，然后用过<code>cmake --build . --target check</code>调用，需要把所有的测试放入all_demo中，<a href="https://stackoverflow.com/questions/733475/cmake-ctest-make-test-doesnt-build-tests">请参考</a><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enable_testing</span>()</span><br><span class="line"><span class="keyword">add_test</span>(NAME demo <span class="keyword">COMMAND</span> demo)</span><br><span class="line"><span class="keyword">add_custom_target</span>(check <span class="keyword">COMMAND</span> <span class="variable">$&#123;CMAKE_CTEST_COMMAND&#125;</span></span><br><span class="line">                  DEPENDS all_demo)</span><br></pre></td></tr></table></figure>
+<a href="https://blog.xizhibei.me/2020/04/05/cmake-4-test-with-google-test/">add_test用法</a><br>更简单的用法是直接在add_subdirectory(src)前添加enable_testing()，然后<code>add_test(demo, demo)</code>，然后用ctest调用测试。ctest运行指定测试，ctest -R -V demo, ctest -N查看所有测试</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">11</span> CACHE <span class="keyword">STRING</span> <span class="string">&quot;c++11&quot;</span> FORCE)</span><br><span class="line"><span class="keyword">if</span>(MSVC)</span><br><span class="line">	<span class="keyword">add_definitions</span>(/O2 /openmp /EHsc)</span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>cmake设置项目属性</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SET_TARGET_PROPERTIES</span>(HelloWorld</span><br><span class="line">	PROPERTIES</span><br><span class="line">	SUFFIX <span class="string">&quot;.mll&quot;</span></span><br><span class="line">	OUTPUT_NAME <span class="string">&quot;hello&quot;</span></span><br><span class="line">	LINK_FLAGS /<span class="keyword">EXPORT</span>:initializePlugin</span><br><span class="line">	LINK_FLAGS /<span class="keyword">EXPORT</span>:uninitializePlugin</span><br><span class="line">	ARCHIVE_OUTPUT_DIRECTORY <span class="string">&quot;$&#123;CMAKE_BINARY_DIR&#125;/lib&quot;</span></span><br><span class="line">	LIBRARY_OUTPUT_DIRECTORY <span class="string">&quot;$&#123;CMAKE_BINARY_DIR&#125;/lib&quot;</span></span><br><span class="line">	RUNTIME_OUTPUT_DIRECTORY <span class="string">&quot;$&#123;CMAKE_BINARY_DIR&#125;/bin&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="win-构建工程"><a href="#win-构建工程" class="headerlink" title="win 构建工程"></a>win 构建工程</h2><p>cmake通常有两种构建工程的方法，<br>. 生成makefile, 通过make(nmake)构建。可以通过<code>cmake .. -G &quot;Unix Makefiles&quot;</code>指定生成Makefile，或者在CMakeLists.txt的同一级创建一个PreLoad.cmake<code>set(CMAKE_GENERATOR &quot;Unix Makefiles&quot; CACHE INTERNAL &quot;&quot; FORCE)</code>。<a href="https://blog.csdn.net/ducal90/article/details/96432700">请参考</a><br>. 生成vs的sln和vcxproj, 然后通过msbuild构建<code>msbuild HelloWorld.sln</code></p>
+</li>
+<li><p>cmake变量设置<code>set(CMAKE_CXX_STANDARD 11 CACHE STRING &quot;c++11&quot; FORCE)</code>，CACHE表示gui(cmake-gui)中可以看到该变量，FORCE表示强制刷新，<a href="https://www.cnblogs.com/narjaja/p/8351500.html">请参考</a>。</p>
+</li>
+<li>设置编译选项的方式<br>. <code>add_compile_options(/Wall)</code><br>. <code>add_definitions(&quot;/Wall)</code><br>. <code>set(CMAKE_CXX_FLAGS &quot;/Wall)</code></li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>Cpp-Notes</title>
     <url>/Notes/2021/01/21/cpp-notes/</url>
     <content><![CDATA[<ul>
+<li>inserter(v, b.begin())可以模拟一个迭代器，与algorithm联合使用</li>
 <li>在常函数中可以修改<code>mutable</code>关键字修饰的成员变量。</li>
 <li><code>dynamic_pointer_cast</code>出错会返回nullptr。</li>
 <li>c++通过条件编译来避免头文件被多次包含。在实际开发中，直接把另一个文件拷贝成当前文件，并在上面做修改。如果忘记修改预处理宏，则会导致文件无法被正确包含的编译出错。正确做法是拷贝文件后因立即修改预处理宏，或者使用#pragma once来避免这个问题。</li>
@@ -520,7 +577,7 @@
 </tr>
 <tr>
 <td style="text-align:center">对矩阵（向量）进行0-1截断</td>
-<td style="text-align:center"><code>m = matrix.cwiseMax(1).cwiseMin(0)</code></td>
+<td style="text-align:center"><code>m = matrix.cwiseMax(0).cwiseMin(1)</code></td>
 </tr>
 </tbody>
 </table>
@@ -531,8 +588,21 @@
 <li><p>eigen对象作为stl容易元素需要进行内存对齐，Eigen::aligned_allocator</p>
 </li>
 <li><p>sparsematrix遍历</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">SparseMatrix&lt;<span class="keyword">double</span>&gt; <span class="title">mat</span><span class="params">(rows,cols)</span></span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">0</span>; k&lt;mat.outerSize(); ++k)</span><br><span class="line">  <span class="keyword">for</span> (SparseMatrix&lt;<span class="keyword">double</span>&gt;::InnerIterator it(mat,k); it; ++it)</span><br><span class="line">  &#123;</span><br><span class="line">    it.value();</span><br><span class="line">    it.row();   <span class="comment">// row index</span></span><br><span class="line">    it.col();   <span class="comment">// col index (here it is equal to k)</span></span><br><span class="line">    it.index(); <span class="comment">// inner index, here it is equal to it.row()</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">SparseMatrix&lt;<span class="keyword">double</span>&gt; <span class="title">mat</span><span class="params">(rows,cols)</span></span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">0</span>; k&lt;mat.outerSize(); ++k)</span><br><span class="line">  <span class="keyword">for</span> (SparseMatrix&lt;<span class="keyword">double</span>&gt;::InnerIterator it(mat,k); it; ++it)</span><br><span class="line">  &#123;</span><br><span class="line">    it.value();</span><br><span class="line">    it.row();   <span class="comment">// row index</span></span><br><span class="line">    it.col();   <span class="comment">// col index (here it is equal to k)</span></span><br><span class="line">    it.index(); <span class="comment">// inner index, here it is equal to it.row()</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="规约、迭代和广播"><a href="#规约、迭代和广播" class="headerlink" title="规约、迭代和广播"></a><a href="https://blog.csdn.net/u012936940/article/details/79842944">规约、迭代和广播</a></h2></li>
+<li>规约：得到矩阵一些特征数，<code>sum(),trace(),minCoeff()</code>squaredNorm()为元素平方和，vector和matrix均有，norm()是squaredNorm()的平方根。</li>
+<li>部分规约(colwise(),rowwise()), 将矩阵看做列（行）向量的集合。</li>
+<li>colwise()，rowwise()将矩阵看做列（行）向量的集合，后续操作都是对集合元素单独操作。例如部分规约后求最大元素所在列（行）。</li>
+<li>广播: 部分规约后进行操作，得到新矩阵，例如将列向量加到矩阵的每一列中。<br>在矩阵中找到和给定向量最接近的一列，使用到了欧氏距离。<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">Eigen::MatrixXf <span class="title">m</span><span class="params">(<span class="number">2</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"><span class="function">Eigen::VectorXf <span class="title">v</span><span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line">  </span><br><span class="line">m &lt;&lt; <span class="number">1</span>, <span class="number">23</span>, <span class="number">6</span>, <span class="number">9</span>,</span><br><span class="line">	<span class="number">3</span>, <span class="number">11</span>, <span class="number">7</span>, <span class="number">2</span>;</span><br><span class="line">       </span><br><span class="line">v &lt;&lt; <span class="number">2</span>,</span><br><span class="line">	<span class="number">3</span>;</span><br><span class="line">MatrixXf::Index index;</span><br><span class="line"><span class="comment">// find nearest neighbour</span></span><br><span class="line">(m.colwise() - v).colwise().squaredNorm().minCoeff(&amp;index);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Nearest neighbour is column &quot;</span> &lt;&lt; index &lt;&lt; <span class="string">&quot;:&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; m.col(index) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></li>
+<li>A.replicate(a, b): A横向扩展a次(包含本身),纵向扩展b次(包含本身),共得到a*b个</li>
+<li>向量 Vector3 homogeneous()可以得到齐次向量</li>
+<li>cwiseAbs(), cwiseAbs2(), cwiseMin(scalar), cwiseMax(vector)用法：an expression of min(max) coefficient of *this and scalar。</li>
 </ul>
+<h2 id="矩阵，向量分块"><a href="#矩阵，向量分块" class="headerlink" title="矩阵，向量分块"></a><a href="https://blog.csdn.net/u012936940/article/details/79811080">矩阵，向量分块</a></h2><p>矩阵：row，col，block，topLeftCorner，bottomLeftCorner，topRightCorner，bottomRightCorner，topRows，bottomRows，leftCols，rightCols，<br>向量：head，tail，segment</p>
+<ul>
+<li>向量asDiagonal()可以得到矩阵，矩阵diagonal()得到对角向量。</li>
+</ul>
+<h2 id="svd分解"><a href="#svd分解" class="headerlink" title="svd分解"></a><a href="https://blog.csdn.net/jiang_he_hu_hai/article/details/78363642">svd分解</a></h2><p>$J = U\Sigma V^T$<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">JacobiSVD&lt;MatrixXd&gt; <span class="title">svd</span><span class="params">(J, ComputeThinU | ComputeThinV)</span></span>;</span><br><span class="line">U = svd.matrixU();</span><br><span class="line">V = svd.matrixV();</span><br><span class="line">A = svd.singularValues();<span class="comment">//svd.singularValues().asDiagonal()得到矩阵</span></span><br></pre></td></tr></table></figure><br>MatrixXd J = svd.matrixU() <em> svd.singularValues().asDiagonal() </em> svd.matrixV().transpose();但J需要是方正。</p>
 ]]></content>
       <categories>
         <category>数值计算库</category>
@@ -574,6 +644,8 @@
 <li>安装插件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-math --save</span><br></pre></td></tr></table></figure></li>
 <li>修改<code>_config.yml</code><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">math:</span></span><br><span class="line"><span class="attr">engine:</span> <span class="string">&#x27;mathjax&#x27;</span> <span class="comment"># or &#x27;katex&#x27;</span></span><br><span class="line"><span class="attr">mathjax:</span></span><br><span class="line">  <span class="comment"># src: custom_mathjax_source</span></span><br><span class="line">  <span class="attr">config:</span></span><br><span class="line">    <span class="comment"># MathJax config</span></span><br></pre></td></tr></table></figure></li>
 <li>修改<code>themes/next/_config.yml</code><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">math:</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">engine:</span> <span class="string">mathjax</span></span><br><span class="line">  <span class="attr">mathjax:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
+<li>使用 \( 和 \) ，或者 <script type="math/tex">和</script> 来包裹一个内联（inline）的数学表达式，<a href="https://cps.ninja/2019/03/16/hexo-with-latex/">请参考</a></li>
+<li>使用 \[ 和 \] 或者一对 $$ 来包裹一个块状（block）的数学表达式</li>
 </ul>
 ]]></content>
       <categories>
@@ -960,46 +1032,6 @@
 <li>启用管理员权限 <code>runas /user:abc cmd</code>，其中abc为Administrators组成员。</li>
 <li>cacls可以改变文件权限。</li>
 <li>win <a href="https://www.bilibili.com/read/cv7076415/">权限管理</a>与<a href="https://blog.csdn.net/weixin_42747982/article/details/83239361">组管理</a>。</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>cmake-node</title>
-    <url>/Notes/2021/06/04/cmake-node/</url>
-    <content><![CDATA[<ul>
-<li>cmake路径只支持<code>/</code>，不支持<code>\</code>，可以通过<code>string(REPLACE &quot;/&quot; &quot;\\&quot; GROUP_PATH &quot;$&#123;SRC_PATH_REL&#125;&quot;)</code>替换。</li>
-<li>如果cuda没有安装在默认位置，通过<code>CMAKE_CUDA_COMPILER</code>指定nvcc路径，<code>set(CMAKE_CUDA_COMPILER &quot;C:/UserProgramFiles/Cuda/bin/nvcc.exe&quot;)</code></li>
-<li>cmake设置平台<code>cmake -G &quot;Visual Studio 15 2017&quot; -A x64</code>或者<code>cmake -G &quot;Unix Makefiles&quot; -A Win32</code>，然后可以设置Release模型，<code>cmake --build . --config Release</code></li>
-<li>linux可以通过<code>LD_LIBRARY_PATH</code>宏设置库搜索路径，而win没有相应的宏，为了让应用程序链接指定的库，有两种解决方法，<a href="https://stackoverflow.com/questions/9008618/is-there-any-way-to-simulate-ld-library-path-in-windows">请参考</a><ul>
-<li>[&check;] 将库拷贝到应用程序目录</li>
-<li>[&cross;] 将库路径加入PATH，并放在系统搜索路径前。(这个方法不一定可行，因为系统搜索路径在前)</li>
-</ul>
-</li>
-<li><p>命令行编译<code>.sln</code>解决方法，</p>
-<ul>
-<li><code>devenv demo.sln /Build</code></li>
-<li><code>msbuild demo.sln /t:&lt;proj1&gt;[,&lt;proj2&gt; ...] /p:configuration=&quot;release&quot;</code></li>
-<li>cmake生成的*.sln 文件，解决方案中不包括INSTALL和ZERO_CHECK，ZERO_CHECK工程主要是监视CMakeLists.txt文件的变化。</li>
-</ul>
-</li>
-<li><p>cmake配置ninja生成器，首先需要将<code>rc.exe, ninja.exe</code>路径包含到<code>PATH</code>，不然ninja会出错，<a href="https://stackoverflow.com/questions/57269635/unable-to-resolve-cl-exe-is-not-able-to-compile-a-simple-test-program">请参考</a>。</p>
-</li>
-<li>cmake指定安装目录<code>cmake .. -G &quot;xxx&quot; -DCMAKE_INSTALL_PREFIX=/install/dir</code></li>
-<li>cmake构造指定目标<code>cmake --build . --target demo</code></li>
-<li>安装项目，首先指定安装目录，<code>cmake .. -G &quot;xxx&quot; -DCMAKE_INSTALL_PREFIX=/install/dir</code>，然后有两种方式安装<br>. <code>msbuild /P:Configuration=Release INSTALL.vcxproj</code><br>. <code>cmake --build . --target INSTALL --config Release</code></li>
-<li>cmake install指定安装目录<code>cmake --install dir_to_cmake_install.cmake --prefix /usr</code>，<a href="https://stackoverflow.com/a/60020133">请参考</a></li>
-<li>make test和make check用法，在cmake中添加add_test，然后用过<code>cmake --build . --target check</code>调用，需要把所有的测试放入all_demo中，<a href="https://stackoverflow.com/questions/733475/cmake-ctest-make-test-doesnt-build-tests">请参考</a><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enable_testing</span>()</span><br><span class="line"><span class="keyword">add_test</span>(NAME demo <span class="keyword">COMMAND</span> demo)</span><br><span class="line"><span class="keyword">add_custom_target</span>(check <span class="keyword">COMMAND</span> <span class="variable">$&#123;CMAKE_CTEST_COMMAND&#125;</span></span><br><span class="line">                  DEPENDS all_demo)</span><br></pre></td></tr></table></figure>
-<a href="https://blog.xizhibei.me/2020/04/05/cmake-4-test-with-google-test/">add_test用法</a><br>更简单的用法是直接在add_subdirectory(src)前添加enable_testing()，然后<code>add_test(demo, demo)</code>，然后用ctest调用测试。ctest运行指定测试，ctest -R -V demo, ctest -N查看所有测试</li>
-</ul>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">11</span> CACHE <span class="keyword">STRING</span> <span class="string">&quot;c++11&quot;</span> FORCE)</span><br><span class="line"><span class="keyword">if</span>(MSVC)</span><br><span class="line">	<span class="keyword">add_definitions</span>(/O2 /openmp /EHsc)</span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>cmake设置项目属性</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SET_TARGET_PROPERTIES</span>(HelloWorld</span><br><span class="line">	PROPERTIES</span><br><span class="line">	SUFFIX <span class="string">&quot;.mll&quot;</span></span><br><span class="line">	OUTPUT_NAME <span class="string">&quot;hello&quot;</span></span><br><span class="line">	LINK_FLAGS /<span class="keyword">EXPORT</span>:initializePlugin</span><br><span class="line">	LINK_FLAGS /<span class="keyword">EXPORT</span>:uninitializePlugin</span><br><span class="line">	ARCHIVE_OUTPUT_DIRECTORY <span class="string">&quot;$&#123;CMAKE_BINARY_DIR&#125;/lib&quot;</span></span><br><span class="line">	LIBRARY_OUTPUT_DIRECTORY <span class="string">&quot;$&#123;CMAKE_BINARY_DIR&#125;/lib&quot;</span></span><br><span class="line">	RUNTIME_OUTPUT_DIRECTORY <span class="string">&quot;$&#123;CMAKE_BINARY_DIR&#125;/bin&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="win-构建工程"><a href="#win-构建工程" class="headerlink" title="win 构建工程"></a>win 构建工程</h2><p>cmake通常有两种构建工程的方法，<br>. 生成makefile, 通过make(nmake)构建。可以通过<code>cmake .. -G &quot;Unix Makefiles&quot;</code>指定生成Makefile，或者在CMakeLists.txt的同一级创建一个PreLoad.cmake<code>set(CMAKE_GENERATOR &quot;Unix Makefiles&quot; CACHE INTERNAL &quot;&quot; FORCE)</code>。<a href="https://blog.csdn.net/ducal90/article/details/96432700">请参考</a><br>. 生成vs的sln和vcxproj, 然后通过msbuild构建<code>msbuild HelloWorld.sln</code></p>
-</li>
-<li><p>cmake变量设置<code>set(CMAKE_CXX_STANDARD 11 CACHE STRING &quot;c++11&quot; FORCE)</code>，CACHE表示gui(cmake-gui)中可以看到该变量，FORCE表示强制刷新，<a href="https://www.cnblogs.com/narjaja/p/8351500.html">请参考</a>。</p>
-</li>
-<li>设置编译选项的方式<br>. <code>add_compile_options(/Wall)</code><br>. <code>add_definitions(&quot;/Wall)</code><br>. <code>set(CMAKE_CXX_FLAGS &quot;/Wall)</code></li>
 </ul>
 ]]></content>
   </entry>
